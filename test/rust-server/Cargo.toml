@@ -1,0 +1,9 @@
+[package]
+name = "noise_server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+hex = "0.4.3"
+message-io = "0.18.2"
+snow = { version = "0.9.6", features = ["byteorder", "hfs", "ring", "ring-accelerated", "ring-resolver", "xchachapoly"] }
