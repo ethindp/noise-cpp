@@ -258,7 +258,7 @@ void CipherState::set_nonce(const std::uint64_t &nonce) { n = nonce; }
 template <STLContainer T>
 void CipherState::encrypt_with_ad(T &ad, T &plaintext) {
   if (!has_key()) {
-    throw std::logic_error("Attempted to encrypt without a key!");
+    return;
   }
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
@@ -269,7 +269,7 @@ void CipherState::encrypt_with_ad(T &ad, T &plaintext) {
 template <STLContainer T>
 void CipherState::decrypt_with_ad(T &ad, T &ciphertext) {
   if (!has_key()) {
-    throw std::logic_error("Attempted to decrypt without a key!");
+    return;
   }
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
@@ -698,21 +698,8 @@ HandshakeState::read_message(std::vector<std::uint8_t> &message,
     }
     message_patterns.pop_front();
   }
-  bool empty = false;
-  if (!std::ranges::all_of(message, [](const auto b) { return b != 0; })) {
-    empty = true;
-  }
-  if (message.empty()) {
-    empty = true;
-  }
-  if (std::ranges::adjacent_find(message, std::ranges::not_equal_to()) ==
-      message.end()) {
-    empty = true;
-  }
-  if (!empty) {
-    ss.decrypt_and_hash(message);
-    std::ranges::move(message, std::back_inserter(payload_buffer));
-  }
+  ss.decrypt_and_hash(message);
+  std::ranges::move(message, std::back_inserter(payload_buffer));
   if (message_patterns.empty()) {
     return std::make_optional(std::move(ss.split()));
   } else {
