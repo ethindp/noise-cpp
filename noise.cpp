@@ -152,9 +152,6 @@ template <STLContainer T1, STLContainer T2> T1 hash(const T2 &input) {
 std::array<std::uint8_t, 64> hmac_hash(std::array<std::uint8_t, 64> &key,
                                        const std::vector<std::uint8_t> &input) {
   std::array<std::uint8_t, 64> hmac;
-  if (key.size() > 128) {
-    crypto_blake2b(key.data(), 64, key.data(), key.size());
-  }
   std::array<std::uint8_t, 128> temp_key;
   for (auto i = 0; i < 64; ++i) {
     temp_key[i] = key[i] ^ 0x36;
@@ -176,7 +173,6 @@ std::array<std::uint8_t, 64> hmac_hash(std::array<std::uint8_t, 64> &key,
   crypto_blake2b_update(&ctx, hmac.data(), 64);
   crypto_blake2b_final(&ctx, hmac.data());
   crypto_wipe(&ctx, sizeof(ctx));
-  crypto_wipe(key.data(), key.size());
   return hmac;
 }
 
@@ -184,9 +180,6 @@ std::array<std::uint8_t, 64>
 hmac_hash(std::array<std::uint8_t, 64> &key,
           const std::array<std::uint8_t, 32> &input) {
   std::array<std::uint8_t, 64> hmac;
-  if (key.size() > 128) {
-    crypto_blake2b(key.data(), 64, key.data(), key.size());
-  }
   std::array<std::uint8_t, 128> temp_key;
   for (auto i = 0; i < 64; ++i) {
     temp_key[i] = key[i] ^ 0x36;
@@ -208,7 +201,6 @@ hmac_hash(std::array<std::uint8_t, 64> &key,
   crypto_blake2b_update(&ctx, hmac.data(), 64);
   crypto_blake2b_final(&ctx, hmac.data());
   crypto_wipe(&ctx, sizeof(ctx));
-  crypto_wipe(key.data(), key.size());
   return hmac;
 }
 
@@ -263,7 +255,8 @@ void CipherState::encrypt_with_ad(T &ad, T &plaintext) {
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
-  encrypt(k, n++, ad, plaintext);
+  encrypt(k, n, ad, plaintext);
+  n += 1;
 }
 
 template <STLContainer T>
@@ -274,7 +267,8 @@ void CipherState::decrypt_with_ad(T &ad, T &ciphertext) {
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
-  decrypt(k, n++, ad, ciphertext);
+  decrypt(k, n, ad, ciphertext);
+  n += 1;
 }
 
 SymmetricState::~SymmetricState() {

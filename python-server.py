@@ -5,7 +5,7 @@ from dissononce.processing.handshakepatterns.interactive.NN import NNHandshakePa
 from dissononce.cipher.chachapoly import ChaChaPolyCipher
 from dissononce.dh.x25519.x25519 import X25519DH
 from dissononce.hash.blake2b import Blake2bHash
-import dissononce
+import dissononce, logging
 from websockets.sync.server import serve, ServerConnection
 
 
@@ -28,9 +28,11 @@ def handler(conn):
         conn.close()
         return
     print("Handshake successful")
+    print (f"Handshake state hash should be {initiator.symmetricstate.get_handshake_hash().hex()}")
     conn.close()
 
 
 print("Waiting for responder...")
+dissononce.logger.setLevel(logging.DEBUG)
 with serve(handler, "localhost", 4000) as s:
     s.serve_forever()
