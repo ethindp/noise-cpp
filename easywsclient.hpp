@@ -10,11 +10,12 @@
 
 #include <string>
 #include <vector>
+#include <cstdint>
 
 namespace easywsclient {
 
 struct Callback_Imp { virtual void operator()(const std::string& message) = 0; };
-struct BytesCallback_Imp { virtual void operator()(const std::vector<uint8_t>& message) = 0; };
+struct BytesCallback_Imp { virtual void operator()(const std::vector<std::uint8_t>& message) = 0; };
 
 class WebSocket {
   public:
@@ -31,7 +32,7 @@ class WebSocket {
     virtual void poll(int timeout = 0) = 0; // timeout in milliseconds
     virtual void send(const std::string& message) = 0;
     virtual void sendBinary(const std::string& message) = 0;
-    virtual void sendBinary(const std::vector<uint8_t>& message) = 0;
+    virtual void sendBinary(const std::vector<std::uint8_t>& message) = 0;
     virtual void sendPing() = 0;
     virtual void close() = 0;
     virtual readyStateValues getReadyState() const = 0;
@@ -56,7 +57,7 @@ class WebSocket {
         struct _Callback : public BytesCallback_Imp {
             Callable& callable;
             _Callback(Callable& callable) : callable(callable) { }
-            void operator()(const std::vector<uint8_t>& message) { callable(message); }
+            void operator()(const std::vector<std::uint8_t>& message) { callable(message); }
         };
         _Callback callback(callable);
         _dispatchBinary(callback);

@@ -698,7 +698,17 @@ HandshakeState::read_message(std::vector<std::uint8_t> &message,
     }
     message_patterns.pop_front();
   }
-  if (!message.empty()) {
+  bool empty = false;
+  if (!std::ranges::all_of(message, [](const auto b) { return b != 0; })) {
+  empty = true;
+  }
+  if (message.empty()) {
+  empty = true;
+  }
+  if (std::ranges::adjacent_find(message, std::ranges::not_equal_to()) == message.end()) {
+  empty = true;
+  }
+  if (!empty) {
     ss.decrypt_and_hash(message);
     std::ranges::move(message, std::back_inserter(payload_buffer));
   }
