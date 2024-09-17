@@ -37,10 +37,8 @@ template <STLContainer T1, STLContainer T2>
 void encrypt(T1 &k, std::uint64_t n, std::optional<T2> ad, T2 &in_out) {
   const auto text_size = in_out.size();
   in_out.resize(in_out.size() + 16);
-  std::span<std::uint8_t> plaintext(in_out.data(), text_size);
-  std::span<std::uint8_t> mac(in_out.data() + text_size, 16);
   std::array<std::uint8_t, 12> nonce;
-  std::ranges::fill(nonce, 0);
+  nonce.fill(0);
   nonce[4] = (n >> (8 * 0)) & 0xff;
   nonce[5] = (n >> (8 * 1)) & 0xff;
   nonce[6] = (n >> (8 * 2)) & 0xff;
@@ -51,9 +49,9 @@ void encrypt(T1 &k, std::uint64_t n, std::optional<T2> ad, T2 &in_out) {
   nonce[11] = (n >> (8 * 7)) & 0xff;
   crypto_aead_ctx ctx;
   crypto_aead_init_ietf(&ctx, k.data(), nonce.data());
-  crypto_aead_write(&ctx, plaintext.data(), mac.data(),
+  crypto_aead_write(&ctx, in_out.data(), in_out.data() + text_size,
                     ad ? ad->data() : nullptr, ad ? ad->size() : 0,
-                    plaintext.data(), text_size);
+                    in_out.data(), text_size);
   crypto_wipe(&ctx, sizeof(ctx));
   crypto_wipe(k.data(), k.size());
   crypto_wipe(nonce.data(), nonce.size());
@@ -64,10 +62,8 @@ void encrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
              std::vector<std::uint8_t> &in_out) {
   const auto text_size = in_out.size();
   in_out.resize(in_out.size() + 16);
-  std::span<std::uint8_t> plaintext(in_out.data(), text_size);
-  std::span<std::uint8_t> mac(in_out.data() + text_size, 16);
   std::array<std::uint8_t, 12> nonce;
-  std::ranges::fill(nonce, 0);
+  nonce.fill(0);
   nonce[4] = (n >> (8 * 0)) & 0xff;
   nonce[5] = (n >> (8 * 1)) & 0xff;
   nonce[6] = (n >> (8 * 2)) & 0xff;
@@ -78,9 +74,9 @@ void encrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
   nonce[11] = (n >> (8 * 7)) & 0xff;
   crypto_aead_ctx ctx;
   crypto_aead_init_ietf(&ctx, k.data(), nonce.data());
-  crypto_aead_write(&ctx, plaintext.data(), mac.data(),
+  crypto_aead_write(&ctx, in_out.data(), in_out.data() + text_size,
                     ad ? ad->data() : nullptr, ad ? ad->size() : 0,
-                    plaintext.data(), text_size);
+                    in_out.data(), text_size);
   crypto_wipe(&ctx, sizeof(ctx));
   crypto_wipe(k.data(), k.size());
   crypto_wipe(nonce.data(), nonce.size());
@@ -89,10 +85,10 @@ void encrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
 template <STLContainer T1, STLContainer T2>
 void decrypt(T1 &k, std::uint64_t n, std::optional<T2> ad, T2 &in_out) {
   const auto text_size = in_out.size() - 16;
-  std::span<std::uint8_t> ciphertext(in_out.data(), text_size);
-  std::span<std::uint8_t> mac(in_out.data() + text_size, 16);
+  if (text_size < 16)
+    throw std::length_error("Will NOT decrypt an empty ciphertext!");
   std::array<std::uint8_t, 12> nonce;
-  std::ranges::fill(nonce, 0);
+  nonce.fill(0);
   nonce[4] = (n >> (8 * 0)) & 0xff;
   nonce[5] = (n >> (8 * 1)) & 0xff;
   nonce[6] = (n >> (8 * 2)) & 0xff;
@@ -103,9 +99,9 @@ void decrypt(T1 &k, std::uint64_t n, std::optional<T2> ad, T2 &in_out) {
   nonce[11] = (n >> (8 * 7)) & 0xff;
   crypto_aead_ctx ctx;
   crypto_aead_init_ietf(&ctx, k.data(), nonce.data());
-  if (crypto_aead_read(&ctx, ciphertext.data(), mac.data(),
+  if (crypto_aead_read(&ctx, in_out.data(), in_out.data() + text_size,
                        ad ? ad->data() : nullptr, ad ? ad->size() : 0,
-                       ciphertext.data(), text_size) == -1) {
+                       in_out.data(), text_size) == -1) {
     crypto_wipe(&ctx, sizeof(ctx));
     crypto_wipe(k.data(), k.size());
     crypto_wipe(nonce.data(), nonce.size());
@@ -120,10 +116,10 @@ void decrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
              std::optional<std::vector<std::uint8_t>> ad,
              std::vector<std::uint8_t> &in_out) {
   const auto text_size = in_out.size() - 16;
-  std::span<std::uint8_t> ciphertext(in_out.data(), text_size);
-  std::span<std::uint8_t> mac(in_out.data() + text_size, 16);
+  if (text_size < 16)
+    throw std::length_error("Will NOT decrypt an empty ciphertext!");
   std::array<std::uint8_t, 12> nonce;
-  std::ranges::fill(nonce, 0);
+  nonce.fill(0);
   nonce[4] = (n >> (8 * 0)) & 0xff;
   nonce[5] = (n >> (8 * 1)) & 0xff;
   nonce[6] = (n >> (8 * 2)) & 0xff;
@@ -134,9 +130,9 @@ void decrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
   nonce[11] = (n >> (8 * 7)) & 0xff;
   crypto_aead_ctx ctx;
   crypto_aead_init_ietf(&ctx, k.data(), nonce.data());
-  if (crypto_aead_read(&ctx, ciphertext.data(), mac.data(),
+  if (crypto_aead_read(&ctx, in_out.data(), in_out.data() + text_size,
                        ad ? ad->data() : nullptr, ad ? ad->size() : 0,
-                       ciphertext.data(), text_size) == -1) {
+                       in_out.data(), text_size) == -1) {
     crypto_wipe(&ctx, sizeof(ctx));
     crypto_wipe(k.data(), k.size());
     crypto_wipe(nonce.data(), nonce.size());
@@ -299,7 +295,7 @@ void SymmetricState::initialize_symmetric(
   }
   ck = h;
   std::array<std::uint8_t, 32> key;
-  std::ranges::fill(key, 0);
+  key.fill(0);
   cs.initialize_key(key);
   crypto_wipe(key.data(), key.size());
 }
@@ -402,17 +398,27 @@ void HandshakeState::initialize(
     const auto &[sk, pk] = *s;
     ssk = sk;
     spk = pk;
+  } else {
+    ssk.fill(0);
+    spk.fill(0);
   }
   if (e) {
     const auto &[sk, pk] = *e;
     esk = sk;
     epk = pk;
+  } else {
+    esk.fill(0);
+    epk.fill(0);
   }
   if (rs) {
     rspk = *rs;
+  } else {
+    rspk.fill(0);
   }
   if (re) {
     repk = *re;
+  } else {
+    repk.fill(0);
   }
   if (s) {
     ss.mix_hash(spk);
@@ -429,6 +435,15 @@ void HandshakeState::initialize(
   using enum PatternToken;
   using enum HandshakePattern;
   switch (handshake_pattern) {
+  case IK:
+    message_patterns = {{S}, {E, Es, S, Ss}, {E, Ee, Se}};
+    break;
+  case IN:
+    message_patterns = {{E, S}, {E, Ee, Se}};
+    break;
+  case IX:
+    message_patterns = {{E, S}, {E, Ee, Se, S, Es}};
+    break;
   case K:
     message_patterns = {{S}, {S}, {E, Es, Ss}};
     break;
@@ -457,23 +472,109 @@ void HandshakeState::initialize(
     message_patterns = {{S}, {E, Es}, {E, Ee}, {S, Se}};
     break;
   case XN:
-    message_patterns = {{E, Ee}, {S, Se}};
+    message_patterns = {{E}, {E, Ee}, {S, Se}};
     break;
   case XX:
     message_patterns = {{E}, {E, Ee, S, Es}, {S, Se}};
     break;
+  case NK1:
+    message_patterns = {{S}, {E}, {E, Ee, Es}};
+    break;
+  case NX1:
+    message_patterns = {{E}, {E, Ee, S}, {Es}};
+    break;
+  case X:
+    message_patterns = {{S}, {E, Es, S, Ss}};
+    break;
+  case X1K:
+    message_patterns = {{S}, {E, Es}, {E, Ee}, {S}, {Se}};
+    break;
+  case XK1:
+    message_patterns = {{S}, {E}, {E, Ee, Es}, {S, Se}};
+    break;
+  case X1K1:
+    message_patterns = {{S}, {E}, {E, Ee, Es}, {S}, {Se}};
+    break;
+  case X1N:
+    message_patterns = {{E}, {E, Ee}, {S}, {Se}};
+    break;
+  case X1X:
+    message_patterns = {{E}, {E, Ee, S, Es}, {S}, {Se}};
+    break;
+  case XX1:
+    message_patterns = {{E}, {E, Ee, S}, {Es, S, Se}};
+    break;
+  case X1X1:
+    message_patterns = {{E}, {E, Ee, S}, {Es, S}, {Se}};
+    break;
+  case K1N:
+    message_patterns = {{S}, {E}, {E, Ee}, {Se}};
+    break;
+  case K1K:
+    message_patterns = {{S}, {S}, {E, Es}, {E, Ee}, {Se}};
+    break;
+  case KK1:
+    message_patterns = {{S}, {S}, {E}, {E, Ee, Se, Es}};
+    break;
+  case K1K1:
+    message_patterns = {{S}, {S}, {E}, {E, Ee, Es}, {Se}};
+    break;
+  case K1X:
+    message_patterns = {{S}, {E}, {E, Ee, S, Es}, {Se}};
+    break;
+  case KX1:
+    message_patterns = {{S}, {E}, {E, Ee, Se, S}, {Es}};
+    break;
+  case K1X1:
+    message_patterns = {{S}, {E}, {E, Ee, S}, {Se, Es}};
+    break;
+  case I1N:
+    message_patterns = {{E, S}, {E, Ee}, {Se}};
+    break;
+  case I1K:
+    message_patterns = {{S}, {E, Es, S}, {E, Ee}, {Se}};
+    break;
+  case IK1:
+    message_patterns = {{S}, {E, S}, {E, Ee, Se, Es}};
+    break;
+  case I1K1:
+    message_patterns = {{S}, {E, S}, {E, Ee, Es}, {Se}};
+    break;
+  case I1X:
+    message_patterns = {{E, S}, {E, Ee, S, Es}, {Se}};
+    break;
+  case IX1:
+    message_patterns = {{E, S}, {E, Ee, Se, S}, {Es}};
+    break;
+  case I1X1:
+    message_patterns = {{E, S}, {E, Ee, S}, {Se, Es}};
+    break;
+  case Custom:
+    break;
+  default:
+    throw std::out_of_range("Selected pattern is NOT implemented!");
   }
 }
 
 std::optional<std::tuple<CipherState, CipherState>>
 HandshakeState::write_message(std::vector<std::uint8_t> &payload,
                               std::vector<std::uint8_t> &message_buffer) {
+  message_buffer.clear();
+  std::ranges::fill(message_buffer, 0);
+  message_buffer.resize(0);
   if (!message_patterns.empty()) {
     const auto &current_pattern = message_patterns.front();
     for (const auto &token : current_pattern) {
       using enum PatternToken;
       switch (token) {
       case E: {
+        if (!(std::ranges::all_of(esk,
+                                  [](const auto byte) { return byte == 0; }) &&
+              std::ranges::all_of(epk,
+                                  [](const auto byte) { return byte == 0; }))) {
+          throw std::logic_error(
+              "Asked to generate a new key pair but one already exists!");
+        }
         auto [sk, pk] = generate_keypair();
         std::ranges::move(sk, esk.begin());
         std::ranges::move(pk, epk.begin());
@@ -532,12 +633,18 @@ std::optional<std::tuple<CipherState, CipherState>>
 HandshakeState::read_message(std::vector<std::uint8_t> &message,
                              std::vector<std::uint8_t> &payload_buffer) {
   payload_buffer.clear();
+  std::ranges::fill(payload_buffer, 0);
+  payload_buffer.resize(0);
   if (!message_patterns.empty()) {
     const auto &current_pattern = message_patterns.front();
     for (const auto &token : current_pattern) {
       using enum PatternToken;
       switch (token) {
       case E: {
+        if (std::ranges::all_of(repk,
+                                [](const auto byte) { return byte != 0; })) {
+          throw std::logic_error("Wanted to store RE but RE already stored!");
+        }
         std::copy_n(std::make_move_iterator(message.begin()), 32, repk.begin());
         message.erase(message.begin(), message.begin() + 32);
         ss.mix_hash(repk);
@@ -556,7 +663,7 @@ HandshakeState::read_message(std::vector<std::uint8_t> &message,
           message.erase(message.begin(), message.begin() + 32);
         }
         ss.decrypt_and_hash(temp);
-        std::ranges::fill(rspk, 0);
+        rspk.fill(0);
         std::ranges::move(temp, rspk.begin());
       } break;
       case Ee: {
@@ -591,8 +698,10 @@ HandshakeState::read_message(std::vector<std::uint8_t> &message,
     }
     message_patterns.pop_front();
   }
-  ss.decrypt_and_hash(message);
-  std::ranges::move(message, std::back_inserter(payload_buffer));
+  if (!message.empty()) {
+    ss.decrypt_and_hash(message);
+    std::ranges::move(message, std::back_inserter(payload_buffer));
+  }
   if (message_patterns.empty()) {
     return std::make_optional(std::move(ss.split()));
   } else {
