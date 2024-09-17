@@ -144,5 +144,9 @@ public:
   read_message(std::vector<std::uint8_t> &message,
                std::vector<std::uint8_t> &payload_buffer);
   std::array<std::uint8_t, 64> get_handshake_hash();
+  std::array<std::uint8_t, 32> get_local_static_public_key();
+  std::array<std::uint8_t, 32> get_local_ephemeral_public_key();
+  std::array<std::uint8_t, 32> get_remote_ephemeral_public_key();
+  std::array<std::uint8_t, 32> get_remote_static_public_key();
 };
 } // namespace noise

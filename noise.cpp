@@ -429,8 +429,41 @@ void HandshakeState::initialize(
   using enum PatternToken;
   using enum HandshakePattern;
   switch (handshake_pattern) {
+  case N:
+  case X:
+  case KN:
+  case NK:
+  case KX:
+  case XK:
   case IK:
-    message_patterns = {{S}, {E, Es, S, Ss}, {E, Ee, Se}};
+  case NK1:
+  case X1K:
+  case XK1:
+  case X1K1:
+  case K1N:
+  case K1X:
+  case KX1:
+  case K1X1:
+  case I1K:
+  case IK1:
+  case I1K1:
+    if ((initiator && !rs) || (!initiator && s))
+      throw std::invalid_argument("Missing s or rs!");
+    break;
+  case K:
+  case KK:
+  case K1K:
+  case KK1:
+  case K1K1:
+    if (!s || !rs)
+      throw std::invalid_argument("Missing s or rs!");
+    break;
+  default:
+    break;
+  }
+  switch (handshake_pattern) {
+  case IK:
+    message_patterns = {{E, Es, S, Ss}, {E, Ee, Se}};
     break;
   case IN:
     message_patterns = {{E, S}, {E, Ee, Se}};
@@ -442,19 +475,19 @@ void HandshakeState::initialize(
     message_patterns = {{E, Es, Ss}};
     break;
   case KK:
-    message_patterns = {{S}, {S}, {E, Es, Ss}, {E, Ee, Se}};
+    message_patterns = {{E, Es, Ss}, {E, Ee, Se}};
     break;
   case KN:
-    message_patterns = {{S}, {E}, {E, Ee, Se}};
+    message_patterns = {{E}, {E, Ee, Se}};
     break;
   case KX:
-    message_patterns = {{S}, {E}, {E, Ee, Se, S, Es}};
+    message_patterns = {{E}, {E, Ee, Se, S, Es}};
     break;
   case N:
     message_patterns = {{E, Es}};
     break;
   case NK:
-    message_patterns = {{S}, {E, Es}, {E, Ee}};
+    message_patterns = {{E, Es}, {E, Ee}};
     break;
   case NN:
     message_patterns = {{E}, {E, Ee}};
@@ -463,7 +496,7 @@ void HandshakeState::initialize(
     message_patterns = {{E}, {E, Ee, S, Es}};
     break;
   case XK:
-    message_patterns = {{S}, {E, Es}, {E, Ee}, {S, Se}};
+    message_patterns = {{E, Es}, {E, Ee}, {S, Se}};
     break;
   case XN:
     message_patterns = {{E}, {E, Ee}, {S, Se}};
@@ -472,7 +505,7 @@ void HandshakeState::initialize(
     message_patterns = {{E}, {E, Ee, S, Es}, {S, Se}};
     break;
   case NK1:
-    message_patterns = {{S}, {E}, {E, Ee, Es}};
+    message_patterns = {{E}, {E, Ee, Es}};
     break;
   case NX1:
     message_patterns = {{E}, {E, Ee, S}, {Es}};
@@ -481,13 +514,13 @@ void HandshakeState::initialize(
     message_patterns = {{E, Es, S, Ss}};
     break;
   case X1K:
-    message_patterns = {{S}, {E, Es}, {E, Ee}, {S}, {Se}};
+    message_patterns = {{E, Es}, {E, Ee}, {S}, {Se}};
     break;
   case XK1:
-    message_patterns = {{S}, {E}, {E, Ee, Es}, {S, Se}};
+    message_patterns = {{E}, {E, Ee, Es}, {S, Se}};
     break;
   case X1K1:
-    message_patterns = {{S}, {E}, {E, Ee, Es}, {S}, {Se}};
+    message_patterns = {{E}, {E, Ee, Es}, {S}, {Se}};
     break;
   case X1N:
     message_patterns = {{E}, {E, Ee}, {S}, {Se}};
@@ -502,37 +535,37 @@ void HandshakeState::initialize(
     message_patterns = {{E}, {E, Ee, S}, {Es, S}, {Se}};
     break;
   case K1N:
-    message_patterns = {{S}, {E}, {E, Ee}, {Se}};
+    message_patterns = {{E}, {E, Ee}, {Se}};
     break;
   case K1K:
-    message_patterns = {{S}, {S}, {E, Es}, {E, Ee}, {Se}};
+    message_patterns = {{E, Es}, {E, Ee}, {Se}};
     break;
   case KK1:
-    message_patterns = {{S}, {S}, {E}, {E, Ee, Se, Es}};
+    message_patterns = {{E}, {E, Ee, Se, Es}};
     break;
   case K1K1:
-    message_patterns = {{S}, {S}, {E}, {E, Ee, Es}, {Se}};
+    message_patterns = {{E}, {E, Ee, Es}, {Se}};
     break;
   case K1X:
-    message_patterns = {{S}, {E}, {E, Ee, S, Es}, {Se}};
+    message_patterns = {{E}, {E, Ee, S, Es}, {Se}};
     break;
   case KX1:
-    message_patterns = {{S}, {E}, {E, Ee, Se, S}, {Es}};
+    message_patterns = {{E}, {E, Ee, Se, S}, {Es}};
     break;
   case K1X1:
-    message_patterns = {{S}, {E}, {E, Ee, S}, {Se, Es}};
+    message_patterns = {{E}, {E, Ee, S}, {Se, Es}};
     break;
   case I1N:
     message_patterns = {{E, S}, {E, Ee}, {Se}};
     break;
   case I1K:
-    message_patterns = {{S}, {E, Es, S}, {E, Ee}, {Se}};
+    message_patterns = {{E, Es, S}, {E, Ee}, {Se}};
     break;
   case IK1:
-    message_patterns = {{S}, {E, S}, {E, Ee, Se, Es}};
+    message_patterns = {{E, S}, {E, Ee, Se, Es}};
     break;
   case I1K1:
-    message_patterns = {{S}, {E, S}, {E, Ee, Es}, {Se}};
+    message_patterns = {{E, S}, {E, Ee, Es}, {Se}};
     break;
   case I1X:
     message_patterns = {{E, S}, {E, Ee, S, Es}, {Se}};
@@ -703,5 +736,21 @@ HandshakeState::read_message(std::vector<std::uint8_t> &message,
 
 std::array<std::uint8_t, 64> HandshakeState::get_handshake_hash() {
   return ss.get_handshake_hash();
+}
+
+std::array<std::uint8_t, 32> HandshakeState::get_local_static_public_key() {
+  return spk;
+}
+
+std::array<std::uint8_t, 32> HandshakeState::get_local_ephemeral_public_key() {
+  return epk;
+}
+
+std::array<std::uint8_t, 32> HandshakeState::get_remote_ephemeral_public_key() {
+  return repk;
+}
+
+std::array<std::uint8_t, 32> HandshakeState::get_remote_static_public_key() {
+  return rspk;
 }
 } // namespace noise
