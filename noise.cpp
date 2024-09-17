@@ -439,7 +439,7 @@ void HandshakeState::initialize(
     message_patterns = {{E, S}, {E, Ee, Se, S, Es}};
     break;
   case K:
-    message_patterns = {{S}, {S}, {E, Es, Ss}};
+    message_patterns = {{E, Es, Ss}};
     break;
   case KK:
     message_patterns = {{S}, {S}, {E, Es, Ss}, {E, Ee, Se}};
@@ -451,7 +451,7 @@ void HandshakeState::initialize(
     message_patterns = {{S}, {E}, {E, Ee, Se, S, Es}};
     break;
   case N:
-    message_patterns = {{S}, {E, Es}};
+    message_patterns = {{E, Es}};
     break;
   case NK:
     message_patterns = {{S}, {E, Es}, {E, Ee}};
@@ -478,7 +478,7 @@ void HandshakeState::initialize(
     message_patterns = {{E}, {E, Ee, S}, {Es}};
     break;
   case X:
-    message_patterns = {{S}, {E, Es, S, Ss}};
+    message_patterns = {{E, Es, S, Ss}};
     break;
   case X1K:
     message_patterns = {{S}, {E, Es}, {E, Ee}, {S}, {Se}};
