@@ -28,7 +28,9 @@ def handler(conn):
         conn.close()
         return
     print("Handshake successful")
-    print (f"Handshake state hash should be {initiator.symmetricstate.get_handshake_hash().hex()}")
+    print(
+        f"Handshake state hash should be {initiator.symmetricstate.get_handshake_hash().hex()}"
+    )
     conn.close()
 
 

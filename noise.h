@@ -83,7 +83,9 @@ public:
   bool has_key() const;
   void set_nonce(const std::uint64_t &nonce);
   template <STLContainer T> void encrypt_with_ad(T &ad, T &plaintext);
+  void encrypt_with_ad(std::vector<std::uint8_t> &plaintext);
   template <STLContainer T> void decrypt_with_ad(T &ad, T &ciphertext);
+  void decrypt_with_ad(std::vector<std::uint8_t> &ciphertext);
 };
 
 class SymmetricState {
@@ -135,11 +137,11 @@ public:
                  e = std::nullopt,
              std::optional<std::array<std::uint8_t, 32>> rs = std::nullopt,
              std::optional<std::array<std::uint8_t, 32>> re = std::nullopt);
-  // These non-templatized versions of read/write_message are not ideal, but I
-  // get linker errors if I templatize them
   std::optional<std::tuple<CipherState, CipherState>>
   write_message(std::vector<std::uint8_t> &payload,
                 std::vector<std::uint8_t> &message_buffer);
+  std::optional<std::tuple<CipherState, CipherState>>
+  write_message(std::vector<std::uint8_t> &message_buffer);
   std::optional<std::tuple<CipherState, CipherState>>
   read_message(std::vector<std::uint8_t> &message,
                std::vector<std::uint8_t> &payload_buffer);

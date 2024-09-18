@@ -85,8 +85,6 @@ void encrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
 template <STLContainer T1, STLContainer T2>
 void decrypt(T1 &k, std::uint64_t n, std::optional<T2> ad, T2 &in_out) {
   const auto text_size = in_out.size() - 16;
-  if (text_size < 16)
-    throw std::length_error("Will NOT decrypt an empty ciphertext!");
   std::array<std::uint8_t, 12> nonce;
   nonce.fill(0);
   nonce[4] = (n >> (8 * 0)) & 0xff;
@@ -110,14 +108,13 @@ void decrypt(T1 &k, std::uint64_t n, std::optional<T2> ad, T2 &in_out) {
   crypto_wipe(&ctx, sizeof(ctx));
   crypto_wipe(k.data(), k.size());
   crypto_wipe(nonce.data(), nonce.size());
+  in_out.resize(text_size);
 }
 
 void decrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
              std::optional<std::vector<std::uint8_t>> ad,
              std::vector<std::uint8_t> &in_out) {
   const auto text_size = in_out.size() - 16;
-  if (text_size < 16)
-    throw std::length_error("Will NOT decrypt an empty ciphertext!");
   std::array<std::uint8_t, 12> nonce;
   nonce.fill(0);
   nonce[4] = (n >> (8 * 0)) & 0xff;
@@ -141,6 +138,7 @@ void decrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
   crypto_wipe(&ctx, sizeof(ctx));
   crypto_wipe(k.data(), k.size());
   crypto_wipe(nonce.data(), nonce.size());
+  in_out.resize(text_size);
 }
 
 template <STLContainer T1, STLContainer T2> T1 hash(const T2 &input) {
@@ -255,8 +253,12 @@ void CipherState::encrypt_with_ad(T &ad, T &plaintext) {
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
-  encrypt(k, n, ad, plaintext);
-  n += 1;
+  encrypt(k, n++, ad, plaintext);
+}
+
+void CipherState::encrypt_with_ad(std::vector<std::uint8_t> &plaintext) {
+  std::vector<std::uint8_t> null_ad;
+  encrypt_with_ad(null_ad, plaintext);
 }
 
 template <STLContainer T>
@@ -267,8 +269,12 @@ void CipherState::decrypt_with_ad(T &ad, T &ciphertext) {
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
-  decrypt(k, n, ad, ciphertext);
-  n += 1;
+  decrypt(k, n++, ad, ciphertext);
+}
+
+void CipherState::decrypt_with_ad(std::vector<std::uint8_t> &ciphertext) {
+  std::vector<std::uint8_t> null_ad;
+  decrypt_with_ad(null_ad, ciphertext);
 }
 
 SymmetricState::~SymmetricState() {
@@ -654,6 +660,12 @@ HandshakeState::write_message(std::vector<std::uint8_t> &payload,
   } else {
     return std::nullopt;
   }
+}
+
+std::optional<std::tuple<CipherState, CipherState>>
+HandshakeState::write_message(std::vector<std::uint8_t> &message_buffer) {
+  std::vector<std::uint8_t> null_payload;
+  return write_message(null_payload, message_buffer);
 }
 
 std::optional<std::tuple<CipherState, CipherState>>
