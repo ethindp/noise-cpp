@@ -35,14 +35,14 @@ int main() {
                                   bob_s);
     // -> e
     std::vector<std::uint8_t> read_buf, first_msg, second_msg, third_msg;
-alice_handshakestate.write_message(first_msg);
-bob_handshakestate.read_message(first_msg, read_buf);
-bob_handshakestate.write_message(second_msg);
-alice_handshakestate.read_message(second_msg, read_buf);
-alice_handshakestate.write_message(third_msg);
-bob_handshakestate.read_message(third_msg, read_buf);
-auto alice_cipherstates = alice_handshakestate.finalize();
-auto bob_cipherstates = bob_handshakestate.finalize();
+    alice_handshakestate.write_message(first_msg);
+    bob_handshakestate.read_message(first_msg, read_buf);
+    bob_handshakestate.write_message(second_msg);
+    alice_handshakestate.read_message(second_msg, read_buf);
+    alice_handshakestate.write_message(third_msg);
+    bob_handshakestate.read_message(third_msg, read_buf);
+    auto alice_cipherstates = alice_handshakestate.finalize();
+    auto bob_cipherstates = bob_handshakestate.finalize();
     auto [alice_send_cipher, alice_recv_cipher] = alice_cipherstates;
     auto [bob_recv_cipher, bob_send_cipher] = bob_cipherstates;
     // Alice to bob

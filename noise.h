@@ -136,9 +136,11 @@ public:
                  e = std::nullopt,
              std::optional<std::array<std::uint8_t, 32>> rs = std::nullopt,
              std::optional<std::array<std::uint8_t, 32>> re = std::nullopt);
-void write_message(std::vector<std::uint8_t> &payload, std::vector<std::uint8_t> &message_buffer);
-void write_message(std::vector<std::uint8_t> &message_buffer);
-void read_message(std::vector<std::uint8_t> &message, std::vector<std::uint8_t> &payload_buffer);
+  void write_message(std::vector<std::uint8_t> &payload,
+                     std::vector<std::uint8_t> &message_buffer);
+  void write_message(std::vector<std::uint8_t> &message_buffer);
+  void read_message(std::vector<std::uint8_t> &message,
+                    std::vector<std::uint8_t> &payload_buffer);
   std::array<std::uint8_t, 64> get_handshake_hash();
   std::array<std::uint8_t, 32> get_local_static_public_key();
   std::array<std::uint8_t, 32> get_local_ephemeral_public_key();

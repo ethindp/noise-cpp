@@ -36,9 +36,9 @@ int main() {
     bob_handshakestate.read_message(first_msg, read_buf);
     // <- e, ee
     bob_handshakestate.write_message(second_msg);
-alice_handshakestate.read_message(second_msg, read_buf);
-auto alice_cipherstates = alice_handshakestate.finalize();
-auto bob_cipherstates = bob_handshakestate.finalize();
+    alice_handshakestate.read_message(second_msg, read_buf);
+    auto alice_cipherstates = alice_handshakestate.finalize();
+    auto bob_cipherstates = bob_handshakestate.finalize();
     auto [alice_send_cipher, alice_recv_cipher] = alice_cipherstates;
     auto [bob_recv_cipher, bob_send_cipher] = bob_cipherstates;
     // Alice to bob
