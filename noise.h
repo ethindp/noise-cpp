@@ -126,7 +126,7 @@ public:
   HandshakeState() = default;
   ~HandshakeState();
   void
-  initialize(const HandshakePattern &handshake_pattern, const bool &i,
+  initialize(const HandshakePattern &handshake_pattern, const bool &initiator,
              const std::vector<std::uint8_t> prologue = {},
              std::optional<std::tuple<std::array<std::uint8_t, 32>,
                                       std::array<std::uint8_t, 32>>>
