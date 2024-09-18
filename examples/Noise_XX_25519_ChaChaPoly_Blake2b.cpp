@@ -34,45 +34,17 @@ int main() {
     bob_handshakestate.initialize(noise::HandshakePattern::XX, false, {},
                                   bob_s);
     // -> e
-    std::vector<std::uint8_t> message_buffer, tmp, null_payload;
-    if (const auto res =
-            alice_handshakestate.write_message(null_payload, message_buffer);
-        res) {
-      fmt::println("Oops, we got a split when we didn't expect it!");
-      return 1;
-    }
-    if (const auto res = bob_handshakestate.read_message(message_buffer, tmp);
-        res) {
-      fmt::println("Oops, we got a split when we didn't expect it!");
-      return 1;
-    }
-    // <- e, ee, s, es
-    message_buffer.clear();
-    null_payload.clear();
-    if (const auto res =
-            bob_handshakestate.write_message(null_payload, message_buffer);
-        res) {
-      fmt::println("Oops, we got a split when we didn't expect it!");
-      return 1;
-    }
-    if (const auto res = alice_handshakestate.read_message(message_buffer, tmp);
-        res) {
-      fmt::println("Oops, we got a split when we didn't expect it!");
-      return 1;
-    }
-    // -> s, se
-    message_buffer.clear();
-    null_payload.clear();
-    auto alice_cipherstates =
-        alice_handshakestate.write_message(null_payload, message_buffer);
-    auto bob_cipherstates =
-        bob_handshakestate.read_message(message_buffer, tmp);
-    if (!alice_cipherstates || !bob_cipherstates) {
-      fmt::println("Uh oh, we didn't get a split when we expected!");
-      return 1;
-    }
-    auto [alice_send_cipher, alice_recv_cipher] = *alice_cipherstates;
-    auto [bob_recv_cipher, bob_send_cipher] = *bob_cipherstates;
+    std::vector<std::uint8_t> read_buf, first_msg, second_msg, third_msg;
+alice_handshakestate.write_message(first_msg);
+bob_handshakestate.read_message(first_msg, read_buf);
+bob_handshakestate.write_message(second_msg);
+alice_handshakestate.read_message(second_msg, read_buf);
+alice_handshakestate.write_message(third_msg);
+bob_handshakestate.read_message(third_msg, read_buf);
+auto alice_cipherstates = alice_handshakestate.finalize();
+auto bob_cipherstates = bob_handshakestate.finalize();
+    auto [alice_send_cipher, alice_recv_cipher] = alice_cipherstates;
+    auto [bob_recv_cipher, bob_send_cipher] = bob_cipherstates;
     // Alice to bob
     auto text = "Hello";
     auto text_bytes = to_bytes(text);

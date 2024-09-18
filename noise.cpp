@@ -257,8 +257,8 @@ void CipherState::encrypt_with_ad(T &ad, T &plaintext) {
 }
 
 void CipherState::encrypt_with_ad(std::vector<std::uint8_t> &plaintext) {
-  std::vector<std::uint8_t> null_ad;
-  encrypt_with_ad(null_ad, plaintext);
+std::vector<std::uint8_t> null_ad;
+encrypt_with_ad(null_ad, plaintext);
 }
 
 template <STLContainer T>
@@ -273,8 +273,8 @@ void CipherState::decrypt_with_ad(T &ad, T &ciphertext) {
 }
 
 void CipherState::decrypt_with_ad(std::vector<std::uint8_t> &ciphertext) {
-  std::vector<std::uint8_t> null_ad;
-  decrypt_with_ad(null_ad, ciphertext);
+std::vector<std::uint8_t> null_ad;
+decrypt_with_ad(null_ad, ciphertext);
 }
 
 SymmetricState::~SymmetricState() {
@@ -582,16 +582,20 @@ void HandshakeState::initialize(
   case I1X1:
     message_patterns = {{E, S}, {E, Ee, S}, {Se, Es}};
     break;
-  case Custom:
-    break;
   default:
     throw std::out_of_range("Selected pattern is NOT implemented!");
   }
+  my_turn = initiator;
+  completed = false;
 }
 
-std::optional<std::tuple<CipherState, CipherState>>
-HandshakeState::write_message(std::vector<std::uint8_t> &payload,
-                              std::vector<std::uint8_t> &message_buffer) {
+void HandshakeState::write_message(std::vector<std::uint8_t> &payload, std::vector<std::uint8_t> &message_buffer) {
+if (completed) {
+throw std::runtime_error("Handshake has already been completed!");
+}
+if (!my_turn) {
+throw std::runtime_error("Expected a read message call, but write message was called instead!");
+}
   message_buffer.clear();
   std::ranges::fill(message_buffer, 0);
   message_buffer.resize(0);
@@ -656,21 +660,27 @@ HandshakeState::write_message(std::vector<std::uint8_t> &payload,
   ss.encrypt_and_hash(payload);
   std::ranges::move(payload, std::back_inserter(message_buffer));
   if (message_patterns.empty()) {
-    return std::make_optional(std::move(ss.split()));
+    completed = true;
   } else {
-    return std::nullopt;
+    my_turn = false;
   }
 }
 
-std::optional<std::tuple<CipherState, CipherState>>
-HandshakeState::write_message(std::vector<std::uint8_t> &message_buffer) {
-  std::vector<std::uint8_t> null_payload;
-  return write_message(null_payload, message_buffer);
+void HandshakeState::write_message(std::vector<std::uint8_t> &message_buffer) {
+std::vector<std::uint8_t> null_payload;
+write_message(null_payload, message_buffer);
 }
 
-std::optional<std::tuple<CipherState, CipherState>>
-HandshakeState::read_message(std::vector<std::uint8_t> &message,
-                             std::vector<std::uint8_t> &payload_buffer) {
+void HandshakeState::read_message(std::vector<std::uint8_t> &message, std::vector<std::uint8_t> &payload_buffer) {
+if (completed) {
+throw std::runtime_error("Handshake has already been completed!");
+}
+if (my_turn) {
+throw std::runtime_error("Expected a write message call, but read message was called instead!");
+}
+if (message.size() > 65535) {
+throw std::length_error("Message is too large");
+}
   payload_buffer.clear();
   std::ranges::fill(payload_buffer, 0);
   payload_buffer.resize(0);
@@ -740,9 +750,9 @@ HandshakeState::read_message(std::vector<std::uint8_t> &message,
   ss.decrypt_and_hash(message);
   std::ranges::move(message, std::back_inserter(payload_buffer));
   if (message_patterns.empty()) {
-    return std::make_optional(std::move(ss.split()));
+    completed = true;
   } else {
-    return std::nullopt;
+    my_turn = true;
   }
 }
 
@@ -764,5 +774,24 @@ std::array<std::uint8_t, 32> HandshakeState::get_remote_ephemeral_public_key() {
 
 std::array<std::uint8_t, 32> HandshakeState::get_remote_static_public_key() {
   return rspk;
+}
+
+bool HandshakeState::is_initiator() {
+return initiator;
+}
+
+bool HandshakeState::is_handshake_finished() {
+return completed;
+}
+
+bool HandshakeState::is_my_turn() {
+return my_turn;
+}
+
+std::tuple<CipherState, CipherState> HandshakeState::finalize() {
+if (!completed) {
+throw std::logic_error("Cannot finalize handshake: handshake is not complete!");
+}
+return std::move(ss.split());
 }
 } // namespace noise

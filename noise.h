@@ -65,7 +65,6 @@ enum class HandshakePattern : std::uint8_t {
   I1X,
   IX1,
   I1X1,
-  Custom
 };
 
 std::tuple<std::array<std::uint8_t, 32>, std::array<std::uint8_t, 32>>
@@ -119,7 +118,7 @@ private:
   std::array<std::uint8_t, 32> esk;
   std::array<std::uint8_t, 32> rspk;
   std::array<std::uint8_t, 32> repk;
-  bool initiator;
+  bool initiator, my_turn, completed;
   // Todo: perhaps find a more efficient data structure?
   std::deque<std::vector<PatternToken>> message_patterns;
 
@@ -137,18 +136,17 @@ public:
                  e = std::nullopt,
              std::optional<std::array<std::uint8_t, 32>> rs = std::nullopt,
              std::optional<std::array<std::uint8_t, 32>> re = std::nullopt);
-  std::optional<std::tuple<CipherState, CipherState>>
-  write_message(std::vector<std::uint8_t> &payload,
-                std::vector<std::uint8_t> &message_buffer);
-  std::optional<std::tuple<CipherState, CipherState>>
-  write_message(std::vector<std::uint8_t> &message_buffer);
-  std::optional<std::tuple<CipherState, CipherState>>
-  read_message(std::vector<std::uint8_t> &message,
-               std::vector<std::uint8_t> &payload_buffer);
+void write_message(std::vector<std::uint8_t> &payload, std::vector<std::uint8_t> &message_buffer);
+void write_message(std::vector<std::uint8_t> &message_buffer);
+void read_message(std::vector<std::uint8_t> &message, std::vector<std::uint8_t> &payload_buffer);
   std::array<std::uint8_t, 64> get_handshake_hash();
   std::array<std::uint8_t, 32> get_local_static_public_key();
   std::array<std::uint8_t, 32> get_local_ephemeral_public_key();
   std::array<std::uint8_t, 32> get_remote_ephemeral_public_key();
   std::array<std::uint8_t, 32> get_remote_static_public_key();
+  bool is_initiator();
+  bool is_handshake_finished();
+  bool is_my_turn();
+  std::tuple<CipherState, CipherState> finalize();
 };
 } // namespace noise

@@ -31,26 +31,16 @@ int main() {
     bob_handshakestate.initialize(noise::HandshakePattern::NN, false);
     std::vector<std::uint8_t> read_buf, first_msg, second_msg;
     // -> e
-    if (const auto res = alice_handshakestate.write_message(first_msg); res) {
-      fmt::println("-> e: produced a split!");
-      return 1;
-    }
+    alice_handshakestate.write_message(first_msg);
     // Bob processes the first message...
-    if (const auto res = bob_handshakestate.read_message(first_msg, read_buf);
-        res) {
-      fmt::println("<- e: produced a split!");
-      return 1;
-    }
+    bob_handshakestate.read_message(first_msg, read_buf);
     // <- e, ee
-    auto bob_cipherstates = bob_handshakestate.write_message(second_msg);
-    auto alice_cipherstates =
-        alice_handshakestate.read_message(second_msg, read_buf);
-    if (!alice_cipherstates || !bob_cipherstates) {
-      fmt::println("Uh oh, we didn't get a split when we expected!");
-      return 1;
-    }
-    auto [alice_send_cipher, alice_recv_cipher] = *alice_cipherstates;
-    auto [bob_recv_cipher, bob_send_cipher] = *bob_cipherstates;
+    bob_handshakestate.write_message(second_msg);
+alice_handshakestate.read_message(second_msg, read_buf);
+auto alice_cipherstates = alice_handshakestate.finalize();
+auto bob_cipherstates = bob_handshakestate.finalize();
+    auto [alice_send_cipher, alice_recv_cipher] = alice_cipherstates;
+    auto [bob_recv_cipher, bob_send_cipher] = bob_cipherstates;
     // Alice to bob
     auto text = "Hello";
     auto text_bytes = to_bytes(text);

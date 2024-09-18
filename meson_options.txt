@@ -1,4 +1,1 @@
-option('build_test_clients', description: 'Build the test clients', type: 'boolean', value: true)
-option('build_enet_test_client', description: 'Build the Enet test client', type: 'boolean', value: true)
-option('build_ws_test_client', description: 'Build the websockets test client', type: 'boolean', value: true)
 option('build_examples', description: 'Build examples', type: 'boolean', value: true)
