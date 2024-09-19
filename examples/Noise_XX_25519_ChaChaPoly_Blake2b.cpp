@@ -33,14 +33,19 @@ int main() {
                                     alice_s);
     bob_handshakestate.initialize(noise::HandshakePattern::XX, false, {},
                                   bob_s);
-    // -> e
-    std::vector<std::uint8_t> read_buf, first_msg, second_msg, third_msg;
-    alice_handshakestate.write_message(first_msg);
-    bob_handshakestate.read_message(first_msg, read_buf);
-    bob_handshakestate.write_message(second_msg);
-    alice_handshakestate.read_message(second_msg, read_buf);
-    alice_handshakestate.write_message(third_msg);
-    bob_handshakestate.read_message(third_msg, read_buf);
+    std::vector<std::uint8_t> sendbuf, recvbuf;
+    sendbuf.reserve(65535);
+    recvbuf.reserve(65535);
+    while (!alice_handshakestate.is_handshake_finished()) {
+      sendbuf.clear();
+      if (alice_handshakestate.is_my_turn()) {
+        alice_handshakestate.write_message(sendbuf);
+        bob_handshakestate.read_message(sendbuf, recvbuf);
+      } else {
+        bob_handshakestate.write_message(sendbuf);
+        alice_handshakestate.read_message(sendbuf, recvbuf);
+      }
+    }
     auto alice_cipherstates = alice_handshakestate.finalize();
     auto bob_cipherstates = bob_handshakestate.finalize();
     auto [alice_send_cipher, alice_recv_cipher] = alice_cipherstates;
