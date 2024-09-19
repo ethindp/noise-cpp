@@ -30,3 +30,22 @@ if get_option('build_examples')
         )
     endforeach
 endif
+
+test_runner = executable(
+    'test_runner',
+    noise_sources,
+    'tests/runner/test_runner.cpp',
+    dependencies: [magic_enum, fmt],
+)
+
+tests = files(
+    'tests/vectors/cacophony.txt',
+    'tests/vectors/noise-c-basic.txt',
+    'tests/vectors/noise-c-fallback.txt',
+    'tests/vectors/noise-c-hybrid.txt',
+    'tests/vectors/snow.txt',
+)
+
+foreach tst : tests
+    test(fs.name(tst), test_runner, args: [tst])
+endforeach
