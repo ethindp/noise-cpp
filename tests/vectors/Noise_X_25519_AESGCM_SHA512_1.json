@@ -1,0 +1,36 @@
+{
+    "protocol_name": "Noise_X_25519_AESGCM_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "init_remote_static": "31e0303fd6418d2f8c0e78b91f22e8caed0fbe48656dcf4767e4834f701b8f62",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_static": "4a3acbfdb163dec651dfa3194dece676d437029c62a408b4c5ea9114246e4893",
+    "handshake_hash": "8fb8be3c961ded0b868f0ff65f571b3e2db640efd04acf18fe1f997f94b0c7a61bf09ea017485e1be1319d56e07e6180e19ce95fb57476d9429fc2e0642f7199",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944184139746130960afbe8dc1e77469bf6ab8fe3bc2da546f1e3c53a6a27d7c9bf3ea78aeac27365d52bc2e3038ae4a064bf32348223eca67a135faf757cd3f5192ea9013f6ee1eafd5a57198a96fbea82"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "e0374abfbce3fb0085ff0f871a837475af5e75d9ddbfa8401a1e2acc96bae9"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "eb46215641bb992ecdb74d3ee58ff268d936953be1d4dac2dbbbbf"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "e5d9f1dfe7f1749c08edfd6c5d8c2dfaf68c01be76523eee00c50d"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "b5c39030bae825ed28d66e013e445b4ae5993e6423a58904c254f516798af49358"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "df6c2bd55fedccda788048ba0eedc263de0bf96f17a504e76d2c98569719a6044e86db23ab"
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "protocol_name": "Noise_NXpsk2_25519_AESGCM_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "4a3acbfdb163dec651dfa3194dece676d437029c62a408b4c5ea9114246e4893",
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "handshake_hash": "570a6e627bef7981b8f88113262372c129e96b23f6fc1658c408a8c71105a53689ec40f2235cd7ec22503daebacf80d15cf3263c2ca2ab316e3c9afe0364b75b",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944a80385761ce055893ec9e7fde75856a208751f07e1aa46c2f8e941b93aa733a7"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f144808843c13ac0e8009cd3461a1b3de5afcf60c335b73298e010b0afbffabd9c5d55c592bb647b41f59c890a118d130d6318ef8bac31e1c21897aedaf012d00dba57ad9762d889f7e634258335414b06709b7c"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "ed532ca8080d07f8ed188954604b19d68f3a4b5dd92cf7240e4f38"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "a882aef7b6ee2c521715b631124d7b8f9d9bdf0236f78d20cc5bfe"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "758c0c2a094f9a27d2efce34e2a51c3c15401409a3e5792a82b14c52e0215db24d"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "8c89342eff0a5b14ac05b46f9f4e9719d968de7b074608e1f0677060d6b5e907ae97cad17a"
+        }
+    ]
+}

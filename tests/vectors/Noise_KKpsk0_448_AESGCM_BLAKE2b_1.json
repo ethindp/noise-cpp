@@ -1,0 +1,44 @@
+{
+    "protocol_name": "Noise_KKpsk0_448_AESGCM_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "34d564c4be963d1b2a89fcfe83e6a72b5e3f5e3127f9f596ffc7575e418dfc1f4e827cfc10c9fed38e92ad56ddf8f08571430df2e76d5411",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "init_remote_static": "bd200fa6d50db3a743797b00aca1b70f417bfc381b28b21b5835d84cf7a6da6abba19e3ba7d46b253412b74665d4627b65fcef3f29c95d3e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "a9b45971180882a79b89a3399544a425ef8136d278efa443ed67d3ff9d36e883bc330c6295bbf6ed73ff6fd10cbed767ad05ce03ebd27c7c",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "resp_remote_static": "301551eca1788f4451c269beafed110b51f08c0494a8de614a184ff3d467d7defdfc7c138e4669591108b69a056d25cafda289f22d1f32c0",
+    "handshake_hash": "d5e23c1ff3cb98002e77d12a39d40984be327651e87450070e82cafcec3c778ebb6263dbe95b2cd0829870c1ea7cbc4d4675616286148f089d634b15bce9cc58",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49ae6e669d31902c60f41ef48355cf07d3aa5851a123907ec211bc3c4048f0ccdae"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d6571cada57db8504ef22b777af6b2bf72bb45bdb67de890af72463d5909a36bb"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "4bda0c8b902ddab28150bbaf009086afdc137a3dc41912a57532f0"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "6edc6adea51eb2b8f9c1e1c4081115f726956b42a0435d24570f68"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "dee414acdff11790a3efb6a70a47e9c6f2a902009a0876985a83f8f1d77daf2c3f"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "27d581c282b1f48b1179ff43c66f0f1408a2a378d100d5d0cb585ae2e06c3faf7fe35c5415"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "protocol_name": "Noise_K1N_448_ChaChaPoly_SHA256",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_static": "34d564c4be963d1b2a89fcfe83e6a72b5e3f5e3127f9f596ffc7575e418dfc1f4e827cfc10c9fed38e92ad56ddf8f08571430df2e76d5411",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "resp_remote_static": "301551eca1788f4451c269beafed110b51f08c0494a8de614a184ff3d467d7defdfc7c138e4669591108b69a056d25cafda289f22d1f32c0",
+    "handshake_hash": "b3d3edebeb3968431442d533c61c35c91ddb89cb49926a16af4774264994e5b8",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4c756477696720766f6e204d69736573"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d656f477b563c5166c2ebe12025cdf75eaab7504c97c6d5d3cb82b3131f0bbdc4"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "e667a81c1ee6b80add8971f44df06ce89b298ff01e41b2d36355d9"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "a26bcc56e9561265c93f04c7774096216ae2b5eaf5268f14c52b01"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "3c306cb75d364c4cedc350190c02301fbc84e9d1682bf0d528b151f35fb8f2aa7a"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "18579486972aba0585871e5de7507b2719272cfaccfd94ffb603215015b05d667f0815166e"
+        }
+    ]
+}

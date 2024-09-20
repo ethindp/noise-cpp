@@ -1,0 +1,41 @@
+{
+    "protocol_name": "Noise_INpsk1_25519_ChaChaPoly_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "handshake_hash": "a66f9c1645e67c66449eeaafac01a14aa8ad9323e12026835f9fbaf4c66646008fa22ddd565dbcb1cda1b26363094654b64e96dcdf9a20f6286415ac89c5e64b",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c79440f2f6e8c615058643c7daad05cacc3c966a672483850fbc2294022043d2b7f23153da9650847efd169e3290a53768f277e1fdcf76cc7482a6c4e897518d4520c314820cc9ff03257a8c72a42cebf7cb6"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f1448088433f12bbf98a59d1b086040808edd19059e3c222ed8017a4c7e1b12b39cd1b9d"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "3d65cc102e85abea02c5e3ee23f5ec6aa73cd3b7b764844a6f7637"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "e8c34e86d12e1f7db8ca864b29eb4633ab34534cee41c3876d22f8"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "28478201f967156d971b8c3e29d13b3e9ca7bdd83744b610fcf349fb6b175853dc"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "5442226b2e24f80ffa3522c0ee6dee619c1c135636076f57c92f304d40476dd111d40c8879"
+        }
+    ]
+}

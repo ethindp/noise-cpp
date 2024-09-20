@@ -1,0 +1,42 @@
+{
+    "protocol_name": "Noise_KNpsk2_25519_AESGCM_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "resp_remote_static": "6bc3822a2aa7f4e6981d6538692b3cdf3e6df9eea6ed269eb41d93c22757b75a",
+    "handshake_hash": "5cd754ab716d82894e02ac832cc0a6dfcbfe1bce5ab7dff6e8d7db3101b0dd126c82df9e94e6051e558bafa53c18aa4641acf4c46e4e12e635d26e5ca1d084fd",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c79448085f3466f60f4acf0d4c0674192bae51e556ef70ee5fadd8bdadd87d23e0087"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f1448088438a14922ed1fe70f7622b08e8ef1822e2a431c91290083d9893190bc2e79c9d"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "5d3ef439d7b73934b38d3b85c83c891e6705f050402995974eb869"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "40d0e1b2afbc57f6d180aa5b6784977a025b8a30d57e7548c2651e"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "205196a3260c810c54aeabf661299ef7e9a3becacaa2b2cb993496d6702be58ef0"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "0b5b37672c146fd80a23a26cd0f9b8c915e03a0e17f411827f4f961460ae87daa66883cea8"
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "protocol_name": "Noise_NX1_448_ChaChaPoly_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_static": "a9b45971180882a79b89a3399544a425ef8136d278efa443ed67d3ff9d36e883bc330c6295bbf6ed73ff6fd10cbed767ad05ce03ebd27c7c",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "030d8726e1ee69658f5703311ecf2d2b1a5206ac6fcdddc564a5de3a3003fab514e593e056947b2faf7fb44da03aacb6be49922f399211bd26879f836ec06ccf",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4c756477696720766f6e204d69736573"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d6564baa8ca119d8bc092f2d36d73b1b4e99f85fd5628443fb1813625df3e3aaf6a9036881b75a86e6262e8d8e977caf086beeaf407a33f2653a482d453a802c19144a5149e2a076777eab3e24913878afa1d51d79c83a1e9bdb2d232bbf752e1be3d824d2be7fbde"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "486cb66a935fe39f56b7825ed662901eb52ff78f32030c963eac47"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "aa9363ee237c6954431174cf532ffd6d2ae0900e016692c4550171"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "646934f263d8c61d4b3d8698fe2950198d91efbd7b5f077f749dea2cfbc91a2bc5"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "387b9d770e4944c3b4c2974a069e6defcae8a08fb099e43ea401d98f2781e389cb26c10463"
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "protocol_name": "Noise_Npsk0_448_ChaChaPoly_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "init_remote_static": "bd200fa6d50db3a743797b00aca1b70f417bfc381b28b21b5835d84cf7a6da6abba19e3ba7d46b253412b74665d4627b65fcef3f29c95d3e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "a9b45971180882a79b89a3399544a425ef8136d278efa443ed67d3ff9d36e883bc330c6295bbf6ed73ff6fd10cbed767ad05ce03ebd27c7c",
+    "handshake_hash": "3429b3a0536ea3898f31b79f785516dd287a414a7942640f3461ff5530736cc7d96e16c9228051083a5039cb6ec64408a7930ec24403381b17494966b56327ee",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49aceca8e89b6587067f33251e7145215d7bd9eac7d93a5bc2288cbc7e90fd3f7b0"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "b9a93975ccf3e3342886c257f6429ec6800aee81348931f65872c9c00ea94f"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "c03ef786f69619fbb759ffa0ee65ae36cfcfc4b5d29e1209efb845"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "2bf6a888001e05e87f78e34ba38939c2d7b509bb0f22311713a457"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "b515dd9fd89bdbf84bceccab81e2e6aa8d7f775dab5667b2ff66ebc30b58d03d54"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "caf42d266419d7fc2be9b9bdd782622a22d8d4e1f92f022547ee53861385bc2206f40c0c24"
+        }
+    ]
+}

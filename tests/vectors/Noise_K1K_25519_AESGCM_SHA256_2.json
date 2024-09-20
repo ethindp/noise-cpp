@@ -1,0 +1,27 @@
+{
+    "protocol_name": "Noise_K1K_25519_AESGCM_SHA256",
+    "init_prologue": "5468657265206973206e6f20726967687420616e642077726f6e672e2054686572652773206f6e6c792066756e20616e6420626f72696e672e",
+    "init_psks": [],
+    "init_static": "260b0dc584fc4b9268b374258f1594a3dd07ad35d0cb0f407983d3605958dbeb",
+    "init_ephemeral": "f8b75de063c8f823372ee63057cde3a66bba1bfe83404b03fbd49b7c9ee65275",
+    "init_remote_static": "e6ef7e9c2e3bfbcbc5e037fcfbf13ac32fce6196b50fcfa11815ac6e0795272d",
+    "resp_prologue": "5468657265206973206e6f20726967687420616e642077726f6e672e2054686572652773206f6e6c792066756e20616e6420626f72696e672e",
+    "resp_psks": [],
+    "resp_static": "0e044fe396a4db611fa8178f0701f9969219da77dbbfb142fc909249532865b7",
+    "resp_ephemeral": "0fc691c0f119051a681a7f5ac6ac9a77c39e94d97bbc0952c49cf7fdb33937b5",
+    "resp_remote_static": "93bbfd49e64ea65e24cbae1264e00ff92a83b58a50be301153a83129c35e5a0b",
+    "messages": [
+        {
+            "payload": "2b2b189ce17560b18378aa47bc558393f2904236b730e98e74118d7bf7116412",
+            "ciphertext": "dfe76b7e3610ddeb96a5066700556cc562b06b49b72084521daa2f9b9bc0b50414668d56b9f2fca86ad200b8d3eec86fce0772c63fbd237ed4a42e4196777787ddc4fc6ba5cef8094adb5a7ed7ed9046"
+        },
+        {
+            "payload": "871d7030f6b32ed70baf4018d03247df8ca963fc17a9df5849e58ed2814ae09b",
+            "ciphertext": "e522653080ceb84adfe0c500f522b9a087173e5fad3b3f67f11b68d319aa1c58cb575a3f24faf1ca1151d06669bfb587e11df47b27ff52f8cd8cc26f44d198864ef08c3f5fc1e7ebe8d8c0f7feb040a6"
+        },
+        {
+            "payload": "19dff2be87aade634e4457986fa40cf50eed30a9b1438de951cbda10b9fc17c6",
+            "ciphertext": "c29f25547ac5b3b48498d2219c2f6a3b0c2ed77f10e035c374e7583d75302a7bcff7f4c6b8324acd1af29e6d7009f87d"
+        }
+    ]
+}

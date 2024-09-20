@@ -1,0 +1,44 @@
+{
+    "protocol_name": "Noise_KKpsk0_25519_ChaChaPoly_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "init_remote_static": "31e0303fd6418d2f8c0e78b91f22e8caed0fbe48656dcf4767e4834f701b8f62",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "4a3acbfdb163dec651dfa3194dece676d437029c62a408b4c5ea9114246e4893",
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "resp_remote_static": "6bc3822a2aa7f4e6981d6538692b3cdf3e6df9eea6ed269eb41d93c22757b75a",
+    "handshake_hash": "f3be8a927f01f5e1518383fc386cbd8283cc5fe28d2afc0937839f023b4095ebfa5314f9416a98279bcd036a9d4fd905cb680c1c1caa836626ecac95e1912c7f",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944f7a7396c660f77169cd104440f82a27e44cadaf9af9421d0ed4396ac7c166d34"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f144808843f0583bceca083841478bbda5e65171f09862009cf9d77c42e200715e38682b"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "6224c10bc64fba7a6d2a748f1cc8bb67ad647898093003504e8a02"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "ea0cae99bf3ededeabc5321f5f65a768bdf4d4e72707a9e4628032"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "cee684886d3e34990724a4ca507109bfbfee7342271ee2ada3ed5f8bf35e749fcb"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "25a9ceab713728113274921297ace9273811c80a35ebf1a6bae7a482f1b6388d3eaf920b9a"
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "protocol_name": "Noise_INpsk2_25519_AESGCM_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "handshake_hash": "d323ec2e0034636332f5ddb7528243efb054fb4b8c8159decf9e02576444c34b4d85391682623abf75bb04dadae4eba25859e1d2f618d0745fc74cebfd942d39",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944be1dcd6571c5f95f8af78216edcd25126fc707edca0fb28e7d9526afc90d274543de858f8d1f181aeaa01974783394c15305b837801751756ee8626f16dabc43f072e23ea0ad505bc766d3d143b4d9f1"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f1448088431c233e2bf47a2985236e9f796d2506bf6c15accbaac2308e27e68015a8f03f"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "50daaff68d2b918256d64ee4db82510e4806d2bf81769777ed6c09"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "95b7c7798000de6625cf63190ffb7840884787a0157d84dbee7f2f"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "c58afb94b55c267087c76a931cd50b4ea8258de1d167af0ffbd1d720b7206b05ed"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "d6bcc0451a467528acbff163be734ad6fa73c20ee40bc8f4b6d38e165826e752b9e5767d09"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "protocol_name": "Noise_NNpsk0_448_AESGCM_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "835e6795729662a51d016cbddfb5361332bfc6503a7e4755a7c7f4d1a575cd01f0e0380bb3a8c90d45148e129164cce8c0e039d9049e8fe2387462f1de2a4823",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a0667faab416b164587d8756ae32c5584bdd44f6d53d6bf6f7e2b7b7ee8169b17"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d65d36a68616530a2a07a5942c6158c643453423af4881609dc7f0aa63a0abae3"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "9f951cd98598d0eac6bb482b53d94658e9754e54269905303ec586"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "82f26b4625a38209d419cc04a48062c71f71638e5914bc4fbcce4f"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "6d67cee191745a87f2d27203fdeebc619adab286787e66e4019744ef2e9a6321a1"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "cb769e4749e114fd2ecbdd22f6f97332ba092864592f1b45083101f547b2003bcaed43cdce"
+        }
+    ]
+}

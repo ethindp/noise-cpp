@@ -1,0 +1,35 @@
+{
+    "protocol_name": "Noise_X1N_448_AESGCM_SHA256",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_static": "34d564c4be963d1b2a89fcfe83e6a72b5e3f5e3127f9f596ffc7575e418dfc1f4e827cfc10c9fed38e92ad56ddf8f08571430df2e76d5411",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "94c003b6a8216ce3240603f69effae119c6d459431fca81e15b6dd9ec9a81f67",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4c756477696720766f6e204d69736573"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d65b4f5bdf97a19a2776f18655f27191461b963a209968eb4ad94df5c60f62a75"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "46ae59faa03e388cca64584aa3446ffb34cea1817cc6f2e7f322aacf031c27ace9d221fcc9b36333f965e15e0577de43496c90201e057f7a87990120e9d4b63f69d72842dc10bc30120aaa56b268d2fbc7594f36f9a00e9cab50e856eef79b2ef8cf54"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "88b602a1d3f61c7316de45d712b9cf522596be6f3d9ba555f1606b"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "74e1227facdf5cf4d0c75d36056647306cac095c140414f5d984efaf7ba717859d"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "40b2f3d650cb15a44ee4d2f0043f72440964c5f7f263d0fd19aead671e5618868fbcc04c8b"
+        }
+    ]
+}

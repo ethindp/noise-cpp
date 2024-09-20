@@ -1,0 +1,42 @@
+{
+    "protocol_name": "Noise_IXpsk2_25519_AESGCM_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "4a3acbfdb163dec651dfa3194dece676d437029c62a408b4c5ea9114246e4893",
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "handshake_hash": "79d4ea8ba019563a2cf3c9ff7ddb84dc2e2769c19b53aacc7e41cfca66b8b9569354b08a18d1d52caa9b14df8ffb3943aabe7d820ef35b04969124a3ac9dd9cd",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944a1fbc1c7cc36faa41433c3a7ff72b4e9f462420b32d5f4aadbe6d56a1879efa4e4d44a7c3d79d0088f1b57f10d4ce8ee7aa27a6d9945a52582a0d82fd38082cef848bad620d2eb92b85f92e60eb59f51"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f144808843992c83ecf9111db68518f6c77e98ba581a9d592ff52b9bca9264959d41a7aeb7317022487af502a3044988e741d6db497aa6a7ee008fabd793c097e68fb440791212bbb3fdaf7371f3f4e075fa2714"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "75ef66402880471a8832a4df80054bcda6b2c2543a2e56825697bc"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "8ee3cc9f20646d84e6b6a28b3940fca7442e43894e8c12d8b60597"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "abe7c80d6a2e812e21b86485b15a641772db1b34d228a96d370a5ab2f227cb129f"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "744c82a8b9f623710b2e9871955e43d1871eb29bd693f3b5f39b4a6e59e207645051b485ae"
+        }
+    ]
+}

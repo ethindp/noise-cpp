@@ -1,0 +1,35 @@
+{
+    "protocol_name": "Noise_X1N_448_ChaChaPoly_SHA256",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_static": "34d564c4be963d1b2a89fcfe83e6a72b5e3f5e3127f9f596ffc7575e418dfc1f4e827cfc10c9fed38e92ad56ddf8f08571430df2e76d5411",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "86904be523f3b8de078d2c4b4120b441c2f29eab6c41ac6682f3755e81184374",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4c756477696720766f6e204d69736573"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d65aa97913623ac6cc1186430fa746a39af1d94d97857fdc7123357c31e0df112"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "5efdfda1b2ad7c0b490835e58f0765d51ef6507e525ce71132952b7103b995be90e8bad21b8a1c9a0fc2a4588aad6c02a88b1fc7c52b0a221bcf78e5ab400a434c9e9a8908371dd293b636b65af75d40324708933d5bb5893efdcea9ec7261d8f4178c"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "c5f5a24aea576009407ea44794d7775aa77788c8483fe70497bb62"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "d77680d2f99210c212aa20decaafda73fb8bb212581a9543a042e3681b1b801a08"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "b8ad33608f1d902d617ef90c33330bf5e5ffbc5adf2724da8adcbd808aafb536f8d10241e2"
+        }
+    ]
+}

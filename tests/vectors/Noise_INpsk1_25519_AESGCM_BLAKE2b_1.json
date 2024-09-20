@@ -1,0 +1,41 @@
+{
+    "protocol_name": "Noise_INpsk1_25519_AESGCM_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "handshake_hash": "b89bbf39453c91cc07ed684382cc8a22d0ca4975c3978d51d92bab05038227f87cd0a485f78bed9a4dd94f0e1ce3a1c2eec423cd6a96243a928422a007c25321",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c79441ecb79fac9edde8d9c9c1fcd0e9a8dc81d82be620608a63e20cdd0140ecd55462aa6d3f373f71d99e9aa5feaf771f23095bcc0dd5c6345ac625bda98f2314f1123bad0248012a37915c8ea16776d5b35"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f144808843d866836cb5cc802342075b06134276188cf3c82e40f2e0ab43a9eb2e76d8a9"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "f34c636d0f08bd32ec536bc079831d8d1881eba680d4dfab056637"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "7d55af7569f6ce3bfafdd770a3c5f67952b44455b5325b08d01919"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "3ce3cdf0c0da12cd6fcc7e8f32ea988b7b9250b8f88ee0d5a436597e8c7e2d10f9"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "32f80bfeb762b38b9225425c001ac95c0bd14766806b21e5912400b11833653dd284f4f72b"
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "protocol_name": "Noise_X1N_448_ChaChaPoly_BLAKE2s",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_static": "34d564c4be963d1b2a89fcfe83e6a72b5e3f5e3127f9f596ffc7575e418dfc1f4e827cfc10c9fed38e92ad56ddf8f08571430df2e76d5411",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "0fff4002bc580238942d47acd3ac8b45a4c2672e767daf4442409e1ae58cb67a",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4c756477696720766f6e204d69736573"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d653d7036fa1e187b6c1dd530f69a4da0009131c314430a12908737c1b6ffcaa9"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "214c1f18779d119d6a66a4e18595dc1c74cc1f8ac99a52246c292035ae86e1fa09d1fe511e8448d780099d2032f31c4d5ba189c260eaafbb3f5a1c186f792888f94fa2f24e1ad91b8b82eeb88cfac32d1501d2524f354b201cd2bc29fd653ecd26449d"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "d254ea719fdf6d57fece8cfb9b0b42ed99ca343ab6666c4ee33b9d"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "d9870b8811cd957bdfebca0f2aa9215dbc34b5813b71bca80f6b7cccff8fdd0607"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "4ab27249f713b01582c2e0d0d925e5796462a120ee5a9fa667bdb266394dd7ac1d27ed52e5"
+        }
+    ]
+}

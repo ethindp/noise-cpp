@@ -1,0 +1,35 @@
+{
+    "protocol_name": "Noise_NX1_448_AESGCM_SHA256",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_static": "a9b45971180882a79b89a3399544a425ef8136d278efa443ed67d3ff9d36e883bc330c6295bbf6ed73ff6fd10cbed767ad05ce03ebd27c7c",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "efb7c1568720c28b4fcf8ea1e42bfe3d231213306b233ce1481fed69225a538f",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4c756477696720766f6e204d69736573"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d65042b8ecb730b54af9fccfa0836f8c045f0a87bf3084104463002dc22413d9a49529047080e7bd520900300e56bde59b3ba861e6a91792160f245fb6941ebe9f7dfb6daf8c03a3c41905410426af73e6b3225c8642768b4ba73e88533f32b05a2a611e2ef09e54d"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "5d469e648cf741ac65e2bb56c32c2c644334d7212695a8c7e832e4"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "95e112314ff3d69a0d91c53b4d6b7cadaa409b903ccfd34d6a6ff8"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "2e37ae76c6162db324eb44e01dc932fa1e76029297b10159f7195a6df6fe117de2"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "ce6f7d8a478d0c4082bb12e1c801f71ef6d4e51000511fea8e7e69106f819a89deef4a139a"
+        }
+    ]
+}

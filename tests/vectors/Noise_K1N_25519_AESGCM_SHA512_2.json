@@ -1,0 +1,25 @@
+{
+    "protocol_name": "Noise_K1N_25519_AESGCM_SHA512",
+    "init_prologue": "5468657265206973206e6f20726967687420616e642077726f6e672e2054686572652773206f6e6c792066756e20616e6420626f72696e672e",
+    "init_psks": [],
+    "init_static": "878ed16a4a0cb10577c3c6402ac982396e0f023e6c2e5fb14ff4ad36cae83a83",
+    "init_ephemeral": "fb914f0f2299fed71199436ccd127fb0d4db45dffdc5f269e80011947d5e9ba9",
+    "resp_prologue": "5468657265206973206e6f20726967687420616e642077726f6e672e2054686572652773206f6e6c792066756e20616e6420626f72696e672e",
+    "resp_psks": [],
+    "resp_ephemeral": "98548d3038d3a3ee83f9d67ab027ca81b1c09131e5b8d16dc3780893784b0d69",
+    "resp_remote_static": "48b587df69a765903c471e407ef5d42616c6509d230c47662498b4096b90e673",
+    "messages": [
+        {
+            "payload": "633d13cd31f2dde1ead62708fd5e808701d9f78a17cd5f7be1f085d50fa804d6",
+            "ciphertext": "6ac418ea6c6da10944def1ad580d8a8fa3d0aa9abb50f8e8ab06fcfcb0830c33633d13cd31f2dde1ead62708fd5e808701d9f78a17cd5f7be1f085d50fa804d6"
+        },
+        {
+            "payload": "86823e455ad8bff5025915b30f2eddb986a30d8f7ddfe8cbbc8ae3f001c5f69e",
+            "ciphertext": "96bae3b8a69268cc71ea79fddfbd6ded1e30d8c8d20085c762bea94da961fc5f67265a3f4a2a422d6afca3b4c5d133a38c628c52b6a5c7306b19a2e2e3c8b55a0af7f39bf8e2574948be0e024c5bd631"
+        },
+        {
+            "payload": "b444491378c0c9f96ae1670c3ce521c3a2cbc333c7707a06b483496bf6959589",
+            "ciphertext": "0ebe7368a9d13d95fb94ea6fed3c25bf6b6b5ccc81999f5dbac96e520bc34285d134d4fc8c8afdc589d51e37d402c25c"
+        }
+    ]
+}

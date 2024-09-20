@@ -1,0 +1,43 @@
+{
+    "protocol_name": "Noise_Kpsk0_25519_AESGCM_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "init_remote_static": "31e0303fd6418d2f8c0e78b91f22e8caed0fbe48656dcf4767e4834f701b8f62",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "4a3acbfdb163dec651dfa3194dece676d437029c62a408b4c5ea9114246e4893",
+    "resp_remote_static": "6bc3822a2aa7f4e6981d6538692b3cdf3e6df9eea6ed269eb41d93c22757b75a",
+    "handshake_hash": "8a1ab83f203d73c7c367ecc00ce1e7d5a76ce64b8b044c271c91ec03c5d721617d52da945da325ec00d532d26f4f726d71aebc86ea3f56e18b03f0b16ad3e2b6",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944456cdd5961bca19d683858c8ed38f1016dd39c0025176bbad9550cf7fc79d6da"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "a9e37797fbf6c429a87359b354085afc95711f0bcf978c7769fc872f83cc8e"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "47cbf942d1d9ede955f3932effc505981def8607751340a20bea13"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "b708c559568f8fcc286239db48071cc9ec117f73ca31975d0f4c66"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "7dc77b874e771e7c54be2a23b140c0dccb2bae3c64eb6a535e10afc22f9d8e7493"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "588fc872551c2ab055803376e48759c24d2d4341210b060dcbea1d4986d13457c08d9a04cf"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "protocol_name": "Noise_NNpsk0_448_ChaChaPoly_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "b8ecbcf253d57397282936bb2847b56923897051fc9331bcdcf7b936dd588d3e801d343dac2ef2dec5861df188a76285f46cc5f9a26de5f9072ff716b2f7c91b",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49aa304cfe91f92c782cd4faa9e2e0a816916ebf45402c1358447efc660cae81e75"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d65abb1e6db3eb4203624505df10fa1d9e9534d3633f2bbf9b66e3d4b15d0b89a"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "dd6c0da005ebbc892aa95dc0758f026d448b84e4341025451aec04"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "fbb05a6f10f703e2df8a5c3296940754d48a80f1f0a5f441f4c597"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "5c67abb1a0e43ae21617521601d6b4fd1859dd99ba7c2c075bf015c3deabc59b2f"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "e40926fa9deccb62c8b98af88d19de8e1225e36965dbc24815367770335ced36779edf858b"
+        }
+    ]
+}

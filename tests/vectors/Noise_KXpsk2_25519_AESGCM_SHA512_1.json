@@ -1,0 +1,43 @@
+{
+    "protocol_name": "Noise_KXpsk2_25519_AESGCM_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "4a3acbfdb163dec651dfa3194dece676d437029c62a408b4c5ea9114246e4893",
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "resp_remote_static": "6bc3822a2aa7f4e6981d6538692b3cdf3e6df9eea6ed269eb41d93c22757b75a",
+    "handshake_hash": "ba035f71f7488d33e6713bfefdef1c3dcb483e7275633faf9a5559757e10e75a86775067caa059f964e9dd785f7fa9f33e3e0e579d1624261fc88251cd3b8644",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944f0a99f977b9e8e1f3c0db01c4fd6ac11a7774771610c4e571881bd2976908180"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f14480884353d7ca6f33b8622ad23cfe30cfff5785cbecfd0affb2ed6a82f25d41b0ff20d0e12dcc2db63082a8d96bbf02a92089e72dace1981c8e0d249952cd73c5379e0bf5a9d6bc2fe6634201b0cea16694cf"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "812db363de124d17cb0c5046e1829d78365ce6c6c47a7886eb3e7a"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "3f8081a26c43206cdb2abd2a215d72cd3aae1b832a72a8e685bba8"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "6a06fdb4eb0caa15a1ed4204cb7960acabe06dfa77a60330b2af9d861d2ea0c738"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "4d6542036219c80b4a8e330edb335387f8cd6d1001847598daeac0c9f205ee8c544e299339"
+        }
+    ]
+}

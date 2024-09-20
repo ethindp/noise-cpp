@@ -1,0 +1,37 @@
+{
+    "protocol_name": "Noise_KX1_448_ChaChaPoly_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_static": "34d564c4be963d1b2a89fcfe83e6a72b5e3f5e3127f9f596ffc7575e418dfc1f4e827cfc10c9fed38e92ad56ddf8f08571430df2e76d5411",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_static": "a9b45971180882a79b89a3399544a425ef8136d278efa443ed67d3ff9d36e883bc330c6295bbf6ed73ff6fd10cbed767ad05ce03ebd27c7c",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "resp_remote_static": "301551eca1788f4451c269beafed110b51f08c0494a8de614a184ff3d467d7defdfc7c138e4669591108b69a056d25cafda289f22d1f32c0",
+    "handshake_hash": "2722f3f36add6e808ade332be5e578e59129c34811e7b95c821588d956a5733f4a01cca1c7431b63f8ba0999b2b536509069050ebe756fa8eded6802fafc5bca",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4c756477696720766f6e204d69736573"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d6521482efa80f6cae0c0a541e810d9cb385eaecd8e6f229494d7134071f8c6cfe9080a1aae3ee2931f85369ca2205194e5617fb0b22087811d17fa7fb91aed87c95b95a52f45d9a2250e64f6056e3e061c518e89b60d551e52d7dd5114fecdbabfe7bf13f135d057"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "ebd8c13edef38bf2e6b5baf478ef81f929a65be4c34f300c273f14"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "85689d26e12e70d75a8493f80fd5687dbf7b623d5d8b4c70ff7fa2"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "88d51a07dc32534e1221dc58d2ede2be2930b131993fc6598e9ab8b368d2352947"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "2389f0573935b092c821294a6ccaab6a44939ec4a5d6a0b1d88c00fdf560125b9b36c8a6d9"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "protocol_name": "Noise_Xpsk1_25519_AESGCM_BLAKE2s",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "init_remote_static": "31e0303fd6418d2f8c0e78b91f22e8caed0fbe48656dcf4767e4834f701b8f62",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "4a3acbfdb163dec651dfa3194dece676d437029c62a408b4c5ea9114246e4893",
+    "handshake_hash": "03fa758051e59865ef7aa5295581f521dde6542c475e1f3a1cc035209dfa80fc",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944ac7afcec9b6cfb6d9d745f85b848848cb863c15448d2b8edc3b3b1099103e9144b9314284dbbd872185d3e8f5dd5272f183e02faaab1e53ebc61c1a247cba3590b47674d6115b39ab4619be9afe81a00"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "c191a536616a9a829b867838e1762c7837a31090b872f43ec33fcc1fb6c045"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "a0a3e1d907aa218eae7b76b153d884671655252243eec5d582dc0d"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "758e6ec44944e74b66d0b6e8fbe8192954bb9f8870c8e4b5970aff"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "3d1865c981e91522ec2e0de45e9e1da3d99ac8a3484d1a8c01f704f30bb0d61de2"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "2966079780dfd8538905a91232517ca39b3cb384889d2401b6230222df0abc14fa45d90a52"
+        }
+    ]
+}

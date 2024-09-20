@@ -1,0 +1,36 @@
+{
+    "protocol_name": "Noise_K1N_448_ChaChaPoly_BLAKE2s",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_static": "34d564c4be963d1b2a89fcfe83e6a72b5e3f5e3127f9f596ffc7575e418dfc1f4e827cfc10c9fed38e92ad56ddf8f08571430df2e76d5411",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "resp_remote_static": "301551eca1788f4451c269beafed110b51f08c0494a8de614a184ff3d467d7defdfc7c138e4669591108b69a056d25cafda289f22d1f32c0",
+    "handshake_hash": "69349cc8c200549e65d0761508c1a2c79ff63fb12ef8af0f63a372323594173c",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4c756477696720766f6e204d69736573"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d65e053690e69e4c2100628c15995faead3231beab7fc694a9a81dba0e504d577"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "dcd5f8fbf4ebe23cc9d2a23e34134be63c209857ccac25b6f7a9f4"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "af2dea1aed26d1dfb42e7271e0ef0dcc2b2272e1d41b62272f08c9"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "f4fff6c359d87341f02e97f271f7905d98c73dadb01d62430fd222a9e7d518d623"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "c69046df8ebb2d88aa08a5ecb61179db5c621dfdb058de70888787b17da89caf6db03f3e9c"
+        }
+    ]
+}

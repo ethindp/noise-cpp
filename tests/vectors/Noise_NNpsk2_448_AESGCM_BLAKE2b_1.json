@@ -1,0 +1,40 @@
+{
+    "protocol_name": "Noise_NNpsk2_448_AESGCM_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "4a4efaefcb528d2e00044afbf300a8ddcd4839be846f3a3fc7747adf94ba5d47a4aef3449c9e747804134baf4632ef40f7c2af4f9ef93f9e10dc514019481462",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4d28e4e492f003127674b0d0caa05f0ce0b3a0b29b09204c4a7acee2d4fcbb47"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d65d15b9b69c46c513584da7f38b064a1ca39b7255a1a08e1f8d87ffffcc977f7"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "1dcecd7dcd07c5ccd37dde89be63f888f7429ba638e7294972cc8b"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "2edd177dd182c24ef0306d811e87d8f1b1d1b7d03fc4d9022fc2ba"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "4e587c44a762851dface1d9e851298c6f73813c5e28afd9bdeaabb65b964b2425f"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "27b250c16119e1a0b0fa08d27b2c5c5b5ca5f1dbc28e85753807f1e838e480133491a5276a"
+        }
+    ]
+}

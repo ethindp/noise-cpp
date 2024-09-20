@@ -1,0 +1,36 @@
+{
+    "protocol_name": "Noise_NK1_448_ChaChaPoly_BLAKE2s",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "init_remote_static": "bd200fa6d50db3a743797b00aca1b70f417bfc381b28b21b5835d84cf7a6da6abba19e3ba7d46b253412b74665d4627b65fcef3f29c95d3e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_static": "a9b45971180882a79b89a3399544a425ef8136d278efa443ed67d3ff9d36e883bc330c6295bbf6ed73ff6fd10cbed767ad05ce03ebd27c7c",
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "3c05b3a39e9aa6d06d509bd3f6da8bfad4a89d3f3bab0b31cab0928560f8be0a",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a4c756477696720766f6e204d69736573"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d65515533c6ed741b125a41b7bf289f1d132824cb135621cbed149b51371cde93"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "772cb8afb9ea9bc98a8d559f4514df6ebb1333a4564a76722b8d48"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "d9213419377e4ceb4b376348a260ea7128a1d6fcaad30abeb72f60"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "a5a2d67ae153d69b1f07184438ec1e826bea7e5e1210974c94fa52bb9711651d0c"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "32ce8692e2861735b4e3fa41ea3f73d906d1337af4b330e417c69d6745b4d2df854efd3068"
+        }
+    ]
+}

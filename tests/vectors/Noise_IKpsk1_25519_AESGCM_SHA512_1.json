@@ -1,0 +1,43 @@
+{
+    "protocol_name": "Noise_IKpsk1_25519_AESGCM_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "e61ef9919cde45dd5f82166404bd08e38bceb5dfdfded0a34c8df7ed542214d1",
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "init_remote_static": "31e0303fd6418d2f8c0e78b91f22e8caed0fbe48656dcf4767e4834f701b8f62",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "4a3acbfdb163dec651dfa3194dece676d437029c62a408b4c5ea9114246e4893",
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "handshake_hash": "9dba1c87a527e0a4c2a1981b2c5209682fe04caaca38e063fe53e25c2f5678092faef54229cdc49642e17efc8021c51b31833c9aa1e7f27eeaa72da349a657db",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944edb350135266e4f7dd48a8bca2b20c5ead979d12faeeebfdbb2fa638ba19ad835e1b03d83fe0d1c56bcae848a765e41da0eb82b243e0789bcb2c4ea995bb7ed8d60550ca9353a939f0ab8806a620b611"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f144808843722bfe2df7e31acf0a0c718fba334b72f107d398bd5d6bbe7368cb971aa06c"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "3426a5c3aef0572714cde509ae43454b75c1a36a585ddf9946a9eb"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "d350eb7c940ee1796ecc11f3c7d36c30eba4f681783ccb1031e5c1"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "af97377a8e75405c0323a69f1cadcdda2d1050bf8a0c3800a749ee0bc8c92120b7"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "bb7f6af971c7a2fa6f50ee8fa5744760fa6fba72aeb678bdf0a7ab4e4a51946f56c0f60442"
+        }
+    ]
+}

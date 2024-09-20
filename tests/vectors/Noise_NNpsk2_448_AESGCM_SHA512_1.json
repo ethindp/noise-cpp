@@ -1,0 +1,40 @@
+{
+    "protocol_name": "Noise_NNpsk2_448_AESGCM_SHA512",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "edbfc2c0c42ffe9de6d7299deadadaa617a3894db0d8392e05b8975577159fe8b27fc226e5f98cd7dd8410eddd5b678b7d73722a6cb270e21d7339d1d98e0852",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49ab799b88434e306f52ff64e52aa2c89869001067154d3de90f6bc2cb2721c9cb5"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d654a592a1fc1f375b0c77f4b70f0b1b7ffa3e3d182ebacac2953a846eb39176f"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "7883081e3be032e6bafb68559c1052e9d81666788d25ee24b1ae85"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "5fe9e25596d4a65b8d2601e8839f9d1d00637d2ccfa781112617bc"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "3cc9285f0eb2dc1218e9b32da26ea1e790a105aeb6fbd0cb0c62c5f797ef93d2c3"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "2d90a89b634de7592871ad7485a70b44659037f13381d2a77998da4d6637c09a131fdd9395"
+        }
+    ]
+}

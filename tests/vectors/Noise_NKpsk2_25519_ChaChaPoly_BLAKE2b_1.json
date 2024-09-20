@@ -1,0 +1,42 @@
+{
+    "protocol_name": "Noise_NKpsk2_25519_ChaChaPoly_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_ephemeral": "893e28b9dc6ca8d611ab664754b8ceb7bac5117349a4439a6b0569da977c464a",
+    "init_remote_static": "31e0303fd6418d2f8c0e78b91f22e8caed0fbe48656dcf4767e4834f701b8f62",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_static": "4a3acbfdb163dec651dfa3194dece676d437029c62a408b4c5ea9114246e4893",
+    "resp_ephemeral": "bbdb4cdbd309f1a1f2e1456967fe288cadd6f712d65dc7b7793d5e63da6b375b",
+    "handshake_hash": "710d588598033b8ac37ef52452a93f256dcfb627cbafb2bab13e3a7dcefe85e5d3cdfa52b34985c8a1e7ec9262839a1a2c6a7b772188f5c8713c0b266e2c43a5",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "ca35def5ae56cec33dc2036731ab14896bc4c75dbb07a61f879f8e3afa4c7944d6032cbd631c828c049c37ae18b070d3e01e8bc992a074dba70a91541e0d270c"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "95ebc60d2b1fa672c1f46a8aa265ef51bfe38e7ccb39ec5be34069f144808843bb124fae15b4702fb4bd87e6cc1c8aa5ac59b72630fcea34546604dbe4f10f"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "ab51473cd41a30eac21de3467f4f8fccc06300dce2c11e9de1ef79"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "883b2e7f22185acd331df8c6675dc44c66754566c91654a416f522"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "9557dedffd8857d999e1dc1a407257f2080a8e25c3bd8eb08469340766973f8675"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "aaf2e77996ec737c9e85ce0e89fdc159ddd12d942b076fca9f894c0be7aa8be8f4769dd49a"
+        }
+    ]
+}

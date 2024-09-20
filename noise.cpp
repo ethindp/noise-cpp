@@ -6,7 +6,9 @@
 #include <algorithm>
 #include <array>
 #include <deque>
+#include <exception>
 #include <format>
+#include <iostream>
 #include <iterator>
 #include <limits>
 #include <optional>
@@ -253,7 +255,25 @@ void CipherState::encrypt_with_ad(T &ad, T &plaintext) {
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
+  std::string out = std::format("encrypt(k, n++, ad, plaintext) = encrypt(k=");
+  for (const auto &i : k) {
+    out += std::format("{:02x}", i);
+  }
+  out += std::format(", n={}, ad=", n);
+  for (const auto &b : ad) {
+    out += std::format("{:02x}", b);
+  }
+  out += std::format(", plaintext=");
+  for (const auto &b : plaintext) {
+    out += std::format("{:02x}", b);
+  }
+  out += std::format(")");
+  out += " => ";
   encrypt(k, n++, ad, plaintext);
+  for (const auto &b : plaintext) {
+    out += std::format("{:02x}", b);
+  }
+  std::cout << out << "\n";
 }
 
 void CipherState::encrypt_with_ad(std::vector<std::uint8_t> &plaintext) {
@@ -269,7 +289,31 @@ void CipherState::decrypt_with_ad(T &ad, T &ciphertext) {
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
-  decrypt(k, n++, ad, ciphertext);
+  std::string out = std::format("decrypt(k, n++, ad, plaintext) = decrypt(k=");
+  for (const auto &i : k) {
+    out += std::format("{:02x}", i);
+  }
+  out += std::format(", n={}, ad=", n);
+  for (const auto &b : ad) {
+    out += std::format("{:02x}", b);
+  }
+  out += std::format(", ciphertext=");
+  for (const auto &b : ciphertext) {
+    out += std::format("{:02x}", b);
+  }
+  out += std::format(")");
+  out += " => ";
+  try {
+    decrypt(k, n++, ad, ciphertext);
+    for (const auto &b : ciphertext) {
+      out += std::format("{:02x}", b);
+    }
+  } catch (std::exception &) {
+    out += "error";
+    std::cout << out << "\n";
+    std::rethrow_exception(std::current_exception());
+  }
+  std::cout << out << "\n";
 }
 
 void CipherState::decrypt_with_ad(std::vector<std::uint8_t> &ciphertext) {
@@ -326,6 +370,13 @@ std::array<std::uint8_t, 64> SymmetricState::get_handshake_hash() const {
 }
 
 template <STLContainer T> void SymmetricState::encrypt_and_hash(T &plaintext) {
+  std::string out;
+  out += "encrypt_and_hash(plaintext) = encrypt_and_hash(plaintext=";
+  for (const auto &b : plaintext) {
+    out += std::format("{:02x}", b);
+  }
+  out += ")";
+  std::cout << out << "\n";
   std::vector<std::uint8_t> ad;
   ad.resize(h.size());
   std::ranges::copy(h, ad.begin());
@@ -334,11 +385,21 @@ template <STLContainer T> void SymmetricState::encrypt_and_hash(T &plaintext) {
 }
 
 template <STLContainer T> void SymmetricState::decrypt_and_hash(T &ciphertext) {
+  std::string out;
+  out += "decrypt_and_hash(ciphertext) = decrypt_and_hash(ciphertext=";
+  for (const auto &b : ciphertext) {
+    out += std::format("{:02x}", b);
+  }
+  out += ")";
+  std::cout << out << "\n";
   std::vector<std::uint8_t> ad;
+  std::vector<std::uint8_t> orig_ciphertext;
+  std::ranges::copy(ciphertext, std::back_inserter(orig_ciphertext));
   ad.resize(h.size());
   std::ranges::copy(h, ad.begin());
   cs.decrypt_with_ad(ad, ciphertext);
-  mix_hash(ciphertext);
+  mix_hash(orig_ciphertext);
+  crypto_wipe(orig_ciphertext.data(), orig_ciphertext.size());
 }
 
 std::tuple<CipherState, CipherState> SymmetricState::split() {
@@ -420,17 +481,32 @@ void HandshakeState::initialize(
   } else {
     repk.fill(0);
   }
-  if (s) {
-    ss.mix_hash(spk);
-  }
-  if (e) {
-    ss.mix_hash(epk);
-  }
-  if (rs) {
-    ss.mix_hash(rspk);
-  }
-  if (re) {
-    ss.mix_hash(repk);
+  if (initiator) {
+    if (s) {
+      ss.mix_hash(spk);
+    }
+    if (e) {
+      ss.mix_hash(epk);
+    }
+    if (rs) {
+      ss.mix_hash(rspk);
+    }
+    if (re) {
+      ss.mix_hash(repk);
+    }
+  } else {
+    if (rs) {
+      ss.mix_hash(rspk);
+    }
+    if (re) {
+      ss.mix_hash(repk);
+    }
+    if (s) {
+      ss.mix_hash(spk);
+    }
+    if (e) {
+      ss.mix_hash(epk);
+    }
   }
   using enum PatternToken;
   using enum HandshakePattern;
@@ -622,9 +698,13 @@ void HandshakeState::write_message(std::vector<std::uint8_t> &payload,
         std::ranges::copy(epk, std::back_inserter(message_buffer));
         ss.mix_hash(epk);
       } break;
-      case S:
-        std::ranges::copy(spk, std::back_inserter(message_buffer));
-        break;
+      case S: {
+        std::vector<std::uint8_t> encrypted_pk;
+        std::ranges::copy(spk, std::back_inserter(encrypted_pk));
+        ss.encrypt_and_hash(encrypted_pk);
+        std::ranges::move(encrypted_pk, std::back_inserter(message_buffer));
+        crypto_wipe(encrypted_pk.data(), encrypted_pk.size());
+      } break;
       case Ee: {
         auto dhres = dh(esk, repk);
         ss.mix_key(dhres);
@@ -718,6 +798,7 @@ void HandshakeState::read_message(std::vector<std::uint8_t> &message,
         ss.decrypt_and_hash(temp);
         rspk.fill(0);
         std::ranges::move(temp, rspk.begin());
+        crypto_wipe(temp.data(), temp.size());
       } break;
       case Ee: {
         auto dhres = dh(esk, repk);
@@ -791,6 +872,6 @@ std::tuple<CipherState, CipherState> HandshakeState::finalize() {
     throw std::logic_error(
         "Cannot finalize handshake: handshake is not complete!");
   }
-  return std::move(ss.split());
+  return ss.split();
 }
 } // namespace noise

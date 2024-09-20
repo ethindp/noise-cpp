@@ -1,0 +1,41 @@
+{
+    "protocol_name": "Noise_INpsk1_448_ChaChaPoly_BLAKE2b",
+    "init_prologue": "4a6f686e2047616c74",
+    "init_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "init_static": "34d564c4be963d1b2a89fcfe83e6a72b5e3f5e3127f9f596ffc7575e418dfc1f4e827cfc10c9fed38e92ad56ddf8f08571430df2e76d5411",
+    "init_ephemeral": "7fd26c8b8a0d5c98c85ff9ca1d7bc66d78578b9f2c4c170850748b27992767e6ea6cc9992a561c9d19dfc342e260c280ef4f3f9b8f879d4e",
+    "resp_prologue": "4a6f686e2047616c74",
+    "resp_psks": [
+        "54686973206973206d7920417573747269616e20706572737065637469766521"
+    ],
+    "resp_ephemeral": "3facf7503ebee252465689f1d4e3b1dd219639ef9de4ffd6049d6d71a0f62126840febb99042421ce12af6626d98d9170260390fbc8399a5",
+    "handshake_hash": "03db3e296b9cba20dc3bdf91977bab4a8598882290487a07a8e3de4001ce2aa662f61f625535b5e3756870072e52730bda94d8ec928476c8075b85acdfa046cc",
+    "messages": [
+        {
+            "payload": "4c756477696720766f6e204d69736573",
+            "ciphertext": "6cfcb98ae6b1bc5659cadc595bf664e17094404eae6b45fde6fc40ca937d1dbe1464cb66eb21fdbaa487cd0d11d6dce5aa07b8219bfdc49a95014e7355890e18f62134e8e7ccffdf957735ab3b4c7c1868b08a17ebb3045d6a6adc0efeee28dff05b91f2e61554e16581d15c90f627ec054cf41a9f113717c6e864175d003adb55f2f11444d024b7f45bff7522934db5812c5667152bdac445e5eb4326149437"
+        },
+        {
+            "payload": "4d757272617920526f746862617264",
+            "ciphertext": "f7eb9a09468f9564819de07ada77a6cf5d5eacd84682067538bf2c4e4c905e5cc35cc3ff41241e47ae3bd296477a236ef185e5a8a0f18d655fd8bf394a314654f2d80d7604d4ee0dbaf195ecd2a20d076e6e5213b76759"
+        },
+        {
+            "payload": "462e20412e20486179656b",
+            "ciphertext": "ab35ea90fab106fb8862b84c097835786932b2c37df2f8ae31ab4d"
+        },
+        {
+            "payload": "4361726c204d656e676572",
+            "ciphertext": "bf77be90fa6690d119ade6ce7fb5d0522ad13b0ad94e0928e8490a"
+        },
+        {
+            "payload": "4a65616e2d426170746973746520536179",
+            "ciphertext": "ea7d7c57370efed8f508778017ea82308ab4b31f99ecc0a7825f1d6cbb5454a21b"
+        },
+        {
+            "payload": "457567656e2042f6686d20766f6e2042617765726b",
+            "ciphertext": "4ad6f6bda9004b16dc03c4cbbde61335b80eb8309fefdce8dd8f094527200f8c0f287f8d64"
+        }
+    ]
+}
