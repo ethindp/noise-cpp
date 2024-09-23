@@ -37,12 +37,15 @@ int main() {
     sendbuf.reserve(65535);
     recvbuf.reserve(65535);
     while (!alice_handshakestate.is_handshake_finished()) {
-      sendbuf.clear();
       if (alice_handshakestate.is_my_turn()) {
+        fmt::println("Initiator:");
         alice_handshakestate.write_message(sendbuf);
+        fmt::println("Responder:");
         bob_handshakestate.read_message(sendbuf, recvbuf);
       } else {
+        fmt::println("Responder:");
         bob_handshakestate.write_message(sendbuf);
+        fmt::println("Initiator:");
         alice_handshakestate.read_message(sendbuf, recvbuf);
       }
     }
