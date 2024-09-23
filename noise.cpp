@@ -19,7 +19,7 @@
 #include <tuple>
 #include <vector>
 
-namespace noise { 
+namespace noise {
 std::tuple<std::array<std::uint8_t, 32>, std::array<std::uint8_t, 32>>
 generate_keypair() {
   std::array<std::uint8_t, 32> privkey, pubkey;
@@ -143,7 +143,7 @@ void decrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
   in_out.resize(text_size);
 }
 
-template <STLContainer T1, STLContainer... T2> T1 hash(const T2&... input) {
+template <STLContainer T1, STLContainer... T2> T1 hash(const T2 &...input) {
   T1 hash;
   crypto_blake2b_ctx ctx;
   crypto_blake2b_init(&ctx, hash.size());
@@ -274,7 +274,7 @@ void CipherState::decrypt_with_ad(T &ad, T &ciphertext) {
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
-    decrypt(k, n++, ad, ciphertext);
+  decrypt(k, n++, ad, ciphertext);
 }
 
 void CipherState::decrypt_with_ad(std::vector<std::uint8_t> &ciphertext) {
@@ -317,7 +317,7 @@ template <STLContainer T> void SymmetricState::mix_key(T &input_key_material) {
 }
 
 template <STLContainer T> void SymmetricState::mix_hash(const T &data) {
-h = hash<std::array<std::uint8_t, 64>>(h, data);
+  h = hash<std::array<std::uint8_t, 64>>(h, data);
 }
 
 std::array<std::uint8_t, 64> SymmetricState::get_handshake_hash() const {
@@ -325,17 +325,18 @@ std::array<std::uint8_t, 64> SymmetricState::get_handshake_hash() const {
 }
 
 template <STLContainer T> void SymmetricState::encrypt_and_hash(T &plaintext) {
-std::vector<std::uint8_t> ad;
-ad.assign(h.begin(), h.end());
+  std::vector<std::uint8_t> ad;
+  ad.assign(h.begin(), h.end());
   cs.encrypt_with_ad(ad, plaintext);
   mix_hash(plaintext);
-crypto_wipe(ad.data(), ad.size());
+  crypto_wipe(ad.data(), ad.size());
 }
 
 template <STLContainer T> void SymmetricState::decrypt_and_hash(T &ciphertext) {
   std::vector<std::uint8_t> ad;
   ad.assign(h.begin(), h.end());
-  std::vector<std::uint8_t> orig_ciphertext{ciphertext.begin(), ciphertext.end()};
+  std::vector<std::uint8_t> orig_ciphertext{ciphertext.begin(),
+                                            ciphertext.end()};
   cs.decrypt_with_ad(ad, ciphertext);
   mix_hash(orig_ciphertext);
   crypto_wipe(orig_ciphertext.data(), orig_ciphertext.size());
@@ -618,7 +619,8 @@ void HandshakeState::write_message(std::vector<std::uint8_t> &payload,
   if (!message_patterns.empty()) {
     const auto &current_pattern = message_patterns.front();
     for (const auto &token : current_pattern) {
-    std::cout << std::format("Processing token {}\n", magic_enum::enum_name(token));
+      std::cout << std::format("Processing token {}\n",
+                               magic_enum::enum_name(token));
       using enum PatternToken;
       switch (token) {
       case E: {
@@ -657,10 +659,10 @@ void HandshakeState::write_message(std::vector<std::uint8_t> &payload,
       case Es: {
         std::array<std::uint8_t, 32> key;
         if (initiator) {
-            std::cout << "MixKey(DH(e, rs))\n";
+          std::cout << "MixKey(DH(e, rs))\n";
           key = dh(esk, rspk);
         } else {
-        std::cout << "MixKey(DH(s, re))\n";
+          std::cout << "MixKey(DH(s, re))\n";
           key = dh(ssk, repk);
         }
         ss.mix_key(key);
@@ -669,10 +671,10 @@ void HandshakeState::write_message(std::vector<std::uint8_t> &payload,
       case Se: {
         std::array<std::uint8_t, 32> key;
         if (initiator) {
-        std::cout << "MixKey(DH(s, re))\n";
+          std::cout << "MixKey(DH(s, re))\n";
           key = dh(ssk, repk);
         } else {
-        std::cout << "MixKey(DH(e, rs))\n";
+          std::cout << "MixKey(DH(e, rs))\n";
           key = dh(esk, rspk);
         }
         ss.mix_key(key);
@@ -719,7 +721,8 @@ void HandshakeState::read_message(std::vector<std::uint8_t> &message,
   if (!message_patterns.empty()) {
     const auto &current_pattern = message_patterns.front();
     for (const auto &token : current_pattern) {
-    std::cout << std::format("Processing token {}\n", magic_enum::enum_name(token));
+      std::cout << std::format("Processing token {}\n",
+                               magic_enum::enum_name(token));
       using enum PatternToken;
       switch (token) {
       case E: {
@@ -736,13 +739,13 @@ void HandshakeState::read_message(std::vector<std::uint8_t> &message,
       case S: {
         std::vector<std::uint8_t> temp;
         if (ss.cs_has_key()) {
-        std::cout << "        temp=message[:DHLEN + 16]\n";
+          std::cout << "        temp=message[:DHLEN + 16]\n";
           temp.resize(32 + 16);
           std::copy_n(std::make_move_iterator(message.begin()), 32 + 16,
                       temp.begin());
           message.erase(message.begin(), message.begin() + 32 + 16);
         } else {
-        std::cout << "        temp=message[:DHLEN]\n";
+          std::cout << "        temp=message[:DHLEN]\n";
           temp.resize(32);
           std::copy_n(std::make_move_iterator(message.begin()), 32,
                       temp.begin());
@@ -754,7 +757,7 @@ void HandshakeState::read_message(std::vector<std::uint8_t> &message,
         crypto_wipe(temp.data(), temp.size());
       } break;
       case Ee: {
-      std::cout << "        MixKey(DH(e, re))\n";
+        std::cout << "        MixKey(DH(e, re))\n";
         auto dhres = dh(esk, repk);
         ss.mix_key(dhres);
         crypto_wipe(dhres.data(), dhres.size());
@@ -762,10 +765,10 @@ void HandshakeState::read_message(std::vector<std::uint8_t> &message,
       case Es: {
         std::array<std::uint8_t, 32> key;
         if (initiator) {
-        std::cout << "        MixKey(DH(e, rs))\n";
+          std::cout << "        MixKey(DH(e, rs))\n";
           key = dh(esk, rspk);
         } else {
-        std::cout << "        MixKey(DH(s, re))\n";
+          std::cout << "        MixKey(DH(s, re))\n";
           key = dh(ssk, repk);
         }
         ss.mix_key(key);
@@ -774,17 +777,17 @@ void HandshakeState::read_message(std::vector<std::uint8_t> &message,
       case Se: {
         std::array<std::uint8_t, 32> key;
         if (initiator) {
-        std::cout << "        MixKey(DH(s, re))\n";
+          std::cout << "        MixKey(DH(s, re))\n";
           key = dh(ssk, repk);
         } else {
-        std::cout << "MixKey(DH(e, rs))\n";
+          std::cout << "MixKey(DH(e, rs))\n";
           key = dh(esk, rspk);
         }
         ss.mix_key(key);
         crypto_wipe(key.data(), key.size());
       } break;
       case Ss: {
-      std::cout << "MixKey(DH(s, rs))\n";
+        std::cout << "MixKey(DH(s, rs))\n";
         auto dhres = dh(ssk, rspk);
         ss.mix_key(dhres);
         crypto_wipe(dhres.data(), dhres.size());
