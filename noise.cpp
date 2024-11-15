@@ -8,12 +8,14 @@
 #include <deque>
 #include <exception>
 #include <format>
+#include <iomanip>
 #include <iostream>
 #include <iterator>
 #include <limits>
 #include <optional>
 #include <ranges>
 #include <span>
+#include <sstream>
 #include <stack>
 #include <stdexcept>
 #include <tuple>
@@ -318,6 +320,19 @@ template <STLContainer T> void SymmetricState::mix_key(T &input_key_material) {
 
 template <STLContainer T> void SymmetricState::mix_hash(const T &data) {
   h = hash<std::array<std::uint8_t, 64>>(h, data);
+  std::string data_hex_tmp, new_h_hex_tmp;
+  for (auto x : data) {
+    std::ostringstream oss;
+    oss << std::hex << std::setw(2) << std::setfill('0') << (unsigned)x;
+    data_hex_tmp += oss.str();
+  }
+  for (auto x : h) {
+    std::ostringstream oss;
+    oss << std::hex << std::setw(2) << std::setfill('0') << (unsigned)x;
+    new_h_hex_tmp += oss.str();
+  }
+  std::cout << std::format("mix_hash({}) => new hash: {}\n", data_hex_tmp,
+                           new_h_hex_tmp);
 }
 
 std::array<std::uint8_t, 64> SymmetricState::get_handshake_hash() const {
