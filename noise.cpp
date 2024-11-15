@@ -437,33 +437,6 @@ void HandshakeState::initialize(
   } else {
     repk.fill(0);
   }
-  if (initiator) {
-    if (s) {
-      ss.mix_hash(spk);
-    }
-    if (e) {
-      ss.mix_hash(epk);
-    }
-    if (rs) {
-      ss.mix_hash(rspk);
-    }
-    if (re) {
-      ss.mix_hash(repk);
-    }
-  } else {
-    if (rs) {
-      ss.mix_hash(rspk);
-    }
-    if (re) {
-      ss.mix_hash(repk);
-    }
-    if (s) {
-      ss.mix_hash(spk);
-    }
-    if (e) {
-      ss.mix_hash(epk);
-    }
-  }
   using enum PatternToken;
   using enum HandshakePattern;
   switch (handshake_pattern) {
@@ -500,66 +473,81 @@ void HandshakeState::initialize(
     break;
   }
   switch (handshake_pattern) {
-  case IK:
+  case IK: {
     message_patterns = {{E, Es, S, Ss}, {E, Ee, Se}};
-    break;
+    responder_pre_message_pattern = {S};
+  } break;
   case IN:
     message_patterns = {{E, S}, {E, Ee, Se}};
     break;
   case IX:
     message_patterns = {{E, S}, {E, Ee, Se, S, Es}};
     break;
-  case K:
+  case K: {
     message_patterns = {{E, Es, Ss}};
-    break;
-  case KK:
+    initiator_pre_message_pattern = {S};
+    responder_pre_message_pattern = {S};
+  } break;
+  case KK: {
     message_patterns = {{E, Es, Ss}, {E, Ee, Se}};
-    break;
-  case KN:
+    initiator_pre_message_pattern = {S};
+    responder_pre_message_pattern = {S};
+  } break;
+  case KN: {
     message_patterns = {{E}, {E, Ee, Se}};
-    break;
-  case KX:
+    initiator_pre_message_pattern = {S};
+  } break;
+  case KX: {
     message_patterns = {{E}, {E, Ee, Se, S, Es}};
-    break;
-  case N:
+    initiator_pre_message_pattern = {S};
+  } break;
+  case N: {
     message_patterns = {{E, Es}};
-    break;
-  case NK:
+    responder_pre_message_pattern = {S};
+  } break;
+  case NK: {
     message_patterns = {{E, Es}, {E, Ee}};
-    break;
+    responder_pre_message_pattern = {S};
+  } break;
   case NN:
     message_patterns = {{E}, {E, Ee}};
     break;
   case NX:
     message_patterns = {{E}, {E, Ee, S, Es}};
     break;
-  case XK:
+  case XK: {
     message_patterns = {{E, Es}, {E, Ee}, {S, Se}};
-    break;
+    responder_pre_message_pattern = {S};
+  } break;
   case XN:
     message_patterns = {{E}, {E, Ee}, {S, Se}};
     break;
   case XX:
     message_patterns = {{E}, {E, Ee, S, Es}, {S, Se}};
     break;
-  case NK1:
+  case NK1: {
     message_patterns = {{E}, {E, Ee, Es}};
-    break;
+    responder_pre_message_pattern = {S};
+  } break;
   case NX1:
     message_patterns = {{E}, {E, Ee, S}, {Es}};
     break;
-  case X:
+  case X: {
     message_patterns = {{E, Es, S, Ss}};
-    break;
-  case X1K:
+    responder_pre_message_pattern = {S};
+  } break;
+  case X1K: {
     message_patterns = {{E, Es}, {E, Ee}, {S}, {Se}};
-    break;
-  case XK1:
+    responder_pre_message_pattern = {S};
+  } break;
+  case XK1: {
     message_patterns = {{E}, {E, Ee, Es}, {S, Se}};
-    break;
-  case X1K1:
+    responder_pre_message_pattern = {S};
+  } break;
+  case X1K1: {
     message_patterns = {{E}, {E, Ee, Es}, {S}, {Se}};
-    break;
+    responder_pre_message_pattern = {S};
+  } break;
   case X1N:
     message_patterns = {{E}, {E, Ee}, {S}, {Se}};
     break;
@@ -572,39 +560,52 @@ void HandshakeState::initialize(
   case X1X1:
     message_patterns = {{E}, {E, Ee, S}, {Es, S}, {Se}};
     break;
-  case K1N:
+  case K1N: {
     message_patterns = {{E}, {E, Ee}, {Se}};
-    break;
-  case K1K:
+    initiator_pre_message_pattern = {S};
+  } break;
+  case K1K: {
     message_patterns = {{E, Es}, {E, Ee}, {Se}};
-    break;
-  case KK1:
+    initiator_pre_message_pattern = {S};
+    responder_pre_message_pattern = {S};
+  } break;
+  case KK1: {
     message_patterns = {{E}, {E, Ee, Se, Es}};
-    break;
-  case K1K1:
+    initiator_pre_message_pattern = {S};
+    responder_pre_message_pattern = {S};
+  } break;
+  case K1K1: {
     message_patterns = {{E}, {E, Ee, Es}, {Se}};
-    break;
-  case K1X:
+    initiator_pre_message_pattern = {S};
+    responder_pre_message_pattern = {S};
+  } break;
+  case K1X: {
     message_patterns = {{E}, {E, Ee, S, Es}, {Se}};
-    break;
-  case KX1:
+    initiator_pre_message_pattern = {S};
+  } break;
+  case KX1: {
     message_patterns = {{E}, {E, Ee, Se, S}, {Es}};
-    break;
-  case K1X1:
+    initiator_pre_message_pattern = {S};
+  } break;
+  case K1X1: {
     message_patterns = {{E}, {E, Ee, S}, {Se, Es}};
-    break;
+    initiator_pre_message_pattern = {S};
+  } break;
   case I1N:
     message_patterns = {{E, S}, {E, Ee}, {Se}};
     break;
-  case I1K:
+  case I1K: {
     message_patterns = {{E, Es, S}, {E, Ee}, {Se}};
-    break;
-  case IK1:
+    responder_pre_message_pattern = {S};
+  } break;
+  case IK1: {
     message_patterns = {{E, S}, {E, Ee, Se, Es}};
-    break;
-  case I1K1:
+    responder_pre_message_pattern = {S};
+  } break;
+  case I1K1: {
     message_patterns = {{E, S}, {E, Ee, Es}, {Se}};
-    break;
+    responder_pre_message_pattern = {S};
+  } break;
   case I1X:
     message_patterns = {{E, S}, {E, Ee, S, Es}, {Se}};
     break;
@@ -617,6 +618,36 @@ void HandshakeState::initialize(
   default:
     throw std::out_of_range("Selected pattern is NOT implemented!");
   }
+  if (!initiator_pre_message_pattern.empty() ||
+      !responder_pre_message_pattern.empty()) {
+    if (initiator) {
+      for (const auto &token : initiator_pre_message_pattern) {
+        if (token == S)
+          ss.mix_hash(spk);
+        if (token == E)
+          ss.mix_hash(epk);
+      }
+      for (const auto &token : initiator_pre_message_pattern) {
+        if (token == S)
+          ss.mix_hash(rspk);
+        if (token == E)
+          ss.mix_hash(repk);
+      }
+    } else {
+      for (const auto &token : initiator_pre_message_pattern) {
+        if (token == S)
+          ss.mix_hash(rspk);
+        if (token == E)
+          ss.mix_hash(repk);
+      }
+      for (const auto &token : initiator_pre_message_pattern) {
+        if (token == S)
+          ss.mix_hash(spk);
+        if (token == E)
+          ss.mix_hash(epk);
+      }
+    }
+  }
   my_turn = initiator;
   completed = false;
 }
@@ -627,8 +658,8 @@ void HandshakeState::write_message(std::vector<std::uint8_t> &payload,
     throw std::runtime_error("Handshake has already been completed!");
   }
   if (!my_turn) {
-    throw std::runtime_error(
-        "Expected a read message call, but write message was called instead!");
+    throw std::runtime_error("Expected a read message call, but write "
+                             "message was called instead!");
   }
   std::cout << "WriteMessage(payload, message_buffer)\n";
   if (!message_patterns.empty()) {
@@ -726,8 +757,8 @@ void HandshakeState::read_message(std::vector<std::uint8_t> &message,
     throw std::runtime_error("Handshake has already been completed!");
   }
   if (my_turn) {
-    throw std::runtime_error(
-        "Expected a write message call, but read message was called instead!");
+    throw std::runtime_error("Expected a write message call, but read "
+                             "message was called instead!");
   }
   if (message.size() > 65535) {
     throw std::length_error("Message is too large");

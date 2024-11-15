@@ -122,6 +122,8 @@ private:
   bool initiator, my_turn, completed;
   // Todo: perhaps find a more efficient data structure?
   std::deque<std::vector<PatternToken>> message_patterns;
+  std::vector<PatternToken> initiator_pre_message_pattern,
+      responder_pre_message_pattern;
 
 public:
   HandshakeState() = default;
