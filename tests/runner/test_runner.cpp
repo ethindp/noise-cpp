@@ -102,7 +102,7 @@ void run_test(const NoiseTestVector vector) {
         dh != "25519" || cipher != "ChaChaPoly" || hash != "BLAKE2b") {
       fmt::println("Error: in vector {}: unrecognized or unsupported protocol",
                    vector.protocol_name);
-      std::exit(1);
+      std::exit(99);
     }
     std::vector<std::uint8_t> init_prologue, resp_prologue;
     std::array<std::uint8_t, 32> init_static, init_static_public,

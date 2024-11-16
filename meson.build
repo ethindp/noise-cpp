@@ -20,7 +20,6 @@ if get_option('build_examples')
     examples = files(
         'examples/Noise_NN_25519_ChaChaPoly_Blake2b.cpp',
         'examples/Noise_XX_25519_ChaChaPoly_Blake2b.cpp',
-        'examples/Noise_XX_25519_ChaChaPoly_Blake2b_debug.cpp',
     )
     foreach example : examples
         executable(

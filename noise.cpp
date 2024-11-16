@@ -1,27 +1,105 @@
 #include "noise.h"
-#include "magic_enum.hpp"
 #include "monocypher-ed25519.h"
 #include "monocypher.h"
 #include "rng_get_bytes.h"
+#include <format>
 #include <algorithm>
 #include <array>
 #include <deque>
 #include <exception>
-#include <format>
-#include <iomanip>
-#include <iostream>
 #include <iterator>
 #include <limits>
 #include <optional>
 #include <ranges>
 #include <span>
-#include <sstream>
 #include <stack>
 #include <stdexcept>
 #include <tuple>
 #include <vector>
 
 namespace noise {
+inline std::string handshake_pattern_to_string(const HandshakePattern &p) {
+  using enum HandshakePattern;
+  switch (p) {
+  case IK:
+    return "IK";
+  case IN:
+    return "IN";
+  case IX:
+    return "IX";
+  case K:
+    return "K";
+  case KK:
+    return "KK";
+  case KN:
+    return "KN";
+  case KX:
+    return "KX";
+  case N:
+    return "N";
+  case NK:
+    return "NK";
+  case NN:
+    return "NN";
+  case NX:
+    return "NX";
+  case XK:
+    return "XK";
+  case XN:
+    return "XN";
+  case XX:
+    return "XX";
+  case NK1:
+    return "NK1";
+  case NX1:
+    return "NX1";
+  case X:
+    return "X";
+  case X1K:
+    return "X1K";
+  case XK1:
+    return "XK1";
+  case X1K1:
+    return "X1K1";
+  case X1N:
+    return "X1N";
+  case X1X:
+    return "X1X";
+  case XX1:
+    return "XX1";
+  case X1X1:
+    return "X1X1";
+  case K1N:
+    return "K1N";
+  case K1K:
+    return "K1K";
+  case KK1:
+    return "KK1";
+  case K1K1:
+    return "K1K1";
+  case K1X:
+    return "K1X";
+  case KX1:
+    return "KX1";
+  case K1X1:
+    return "K1X1";
+  case I1N:
+    return "I1N";
+  case I1K:
+    return "I1K";
+  case IK1:
+    return "IK1";
+  case I1K1:
+    return "I1K1";
+  case I1X:
+    return "I1X";
+  case IX1:
+    return "IX1";
+  case I1X1:
+    return "I1X1";
+  }
+}
+
 std::tuple<std::array<std::uint8_t, 32>, std::array<std::uint8_t, 32>>
 generate_keypair() {
   std::array<std::uint8_t, 32> privkey, pubkey;
@@ -386,7 +464,7 @@ void HandshakeState::initialize(
     std::optional<std::array<std::uint8_t, 32>> re) {
   const auto protocol_name_str =
       std::format("Noise_{}_25519_ChaChaPoly_BLAKE2b",
-                  magic_enum::enum_name(handshake_pattern));
+                   handshake_pattern_to_string(handshake_pattern));
   if (protocol_name_str.size() > 255) {
     throw std::length_error("Protocol name too long");
   }
@@ -426,39 +504,6 @@ void HandshakeState::initialize(
   }
   using enum PatternToken;
   using enum HandshakePattern;
-  switch (handshake_pattern) {
-  case N:
-  case X:
-  case KN:
-  case NK:
-  case KX:
-  case XK:
-  case IK:
-  case NK1:
-  case X1K:
-  case XK1:
-  case X1K1:
-  case K1N:
-  case K1X:
-  case KX1:
-  case K1X1:
-  case I1K:
-  case IK1:
-  case I1K1:
-    if ((initiator && !rs) || (!initiator && s))
-      throw std::invalid_argument("Missing s or rs!");
-    break;
-  case K:
-  case KK:
-  case K1K:
-  case KK1:
-  case K1K1:
-    if (!s || !rs)
-      throw std::invalid_argument("Missing s or rs!");
-    break;
-  default:
-    break;
-  }
   switch (handshake_pattern) {
   case IK: {
     message_patterns = {{E, Es, S, Ss}, {E, Ee, Se}};
@@ -609,12 +654,24 @@ void HandshakeState::initialize(
       !responder_pre_message_pattern.empty()) {
     if (initiator) {
       for (const auto &token : initiator_pre_message_pattern) {
+        if (token == E && !e)
+          throw std::logic_error(
+              "An ephemeral key pair was expected but was not specified!");
+        if (token == S && !s)
+          throw std::logic_error(
+              "A static key pair was expected but was not specified!");
         if (token == S)
           ss.mix_hash(spk);
         if (token == E)
           ss.mix_hash(epk);
       }
       for (const auto &token : initiator_pre_message_pattern) {
+        if (token == E && !re)
+          throw std::logic_error("A remote ephemeral key pair was expected but "
+                                 "was not specified!");
+        if (token == S && !rs)
+          throw std::logic_error("A remote ephemeral static key pair was "
+                                 "expected but was not specified!");
         if (token == S)
           ss.mix_hash(rspk);
         if (token == E)
@@ -622,12 +679,24 @@ void HandshakeState::initialize(
       }
     } else {
       for (const auto &token : initiator_pre_message_pattern) {
+        if (token == E && !re)
+          throw std::logic_error("A remote ephemeral key pair was expected but "
+                                 "was not specified!");
+        if (token == S && !rs)
+          throw std::logic_error("A remote ephemeral static key pair was "
+                                 "expected but was not specified!");
         if (token == S)
           ss.mix_hash(rspk);
         if (token == E)
           ss.mix_hash(repk);
       }
       for (const auto &token : initiator_pre_message_pattern) {
+        if (token == E && !e)
+          throw std::logic_error(
+              "An ephemeral key pair was expected but was not specified!");
+        if (token == S && !s)
+          throw std::logic_error(
+              "A static key pair was expected but was not specified!");
         if (token == S)
           ss.mix_hash(spk);
         if (token == E)
@@ -647,6 +716,9 @@ void HandshakeState::write_message(std::vector<std::uint8_t> &payload,
   if (!my_turn) {
     throw std::runtime_error("Expected a read message call, but write "
                              "message was called instead!");
+  }
+  if (payload.size() > 65535) {
+    throw std::length_error("Message is too large");
   }
   if (!message_patterns.empty()) {
     const auto &current_pattern = message_patterns.front();
