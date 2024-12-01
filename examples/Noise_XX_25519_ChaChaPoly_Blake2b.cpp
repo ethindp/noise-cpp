@@ -29,10 +29,16 @@ int main() {
     auto bob_s = noise::generate_keypair();
     auto alice_handshakestate = noise::HandshakeState();
     auto bob_handshakestate = noise::HandshakeState();
-    alice_handshakestate.initialize(noise::HandshakePattern::XX, true, {},
-                                    alice_s);
-    bob_handshakestate.initialize(noise::HandshakePattern::XX, false, {},
-                                  bob_s);
+    noise::HandshakeStateConfiguration alice_cfg;
+    alice_cfg.pattern = noise::HandshakePattern::XX;
+    alice_cfg.initiator = true;
+    alice_cfg.s = alice_s;
+    alice_handshakestate.initialize(alice_cfg);
+    noise::HandshakeStateConfiguration bob_cfg;
+    bob_cfg.pattern = noise::HandshakePattern::XX;
+    bob_cfg.initiator = false;
+    bob_cfg.s = bob_s;
+    bob_handshakestate.initialize(bob_cfg);
     std::vector<std::uint8_t> sendbuf, recvbuf;
     sendbuf.reserve(65535);
     recvbuf.reserve(65535);

@@ -27,8 +27,14 @@ int main() {
   try {
     auto alice_handshakestate = noise::HandshakeState();
     auto bob_handshakestate = noise::HandshakeState();
-    alice_handshakestate.initialize(noise::HandshakePattern::NN, true);
-    bob_handshakestate.initialize(noise::HandshakePattern::NN, false);
+    noise::HandshakeStateConfiguration alice_cfg;
+    alice_cfg.pattern = noise::HandshakePattern::NN;
+    alice_cfg.initiator = true;
+    noise::HandshakeStateConfiguration bob_cfg;
+    bob_cfg.pattern = noise::HandshakePattern::NN;
+    bob_cfg.initiator = false;
+    alice_handshakestate.initialize(alice_cfg);
+    bob_handshakestate.initialize(bob_cfg);
     std::vector<std::uint8_t> read_buf, first_msg, second_msg;
     // -> e
     alice_handshakestate.write_message(first_msg);
