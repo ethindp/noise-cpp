@@ -568,7 +568,7 @@ void HandshakeState::initialize(const HandshakeStateConfiguration &config) {
     spk.fill(0);
   }
   if (config.e) {
-    const auto &kp = *config.s;
+    const auto &kp = *config.e;
     esk = kp.sk;
     epk = kp.pk;
   } else {
