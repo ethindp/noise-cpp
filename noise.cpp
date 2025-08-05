@@ -180,8 +180,7 @@ template <STLContainer T1, STLContainer T2>
 void encrypt(T1 &k, std::uint64_t n, std::optional<T2> ad, T2 &in_out) {
   const auto text_size = in_out.size();
   in_out.resize(in_out.size() + 16);
-  std::array<std::uint8_t, 12> nonce;
-  nonce.fill(0);
+  std::array<std::uint8_t, 12> nonce{};
   nonce[4] = (n >> (8 * 0)) & 0xff;
   nonce[5] = (n >> (8 * 1)) & 0xff;
   nonce[6] = (n >> (8 * 2)) & 0xff;
@@ -205,8 +204,7 @@ void encrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
              std::vector<std::uint8_t> &in_out) {
   const auto text_size = in_out.size();
   in_out.resize(in_out.size() + 16);
-  std::array<std::uint8_t, 12> nonce;
-  nonce.fill(0);
+  std::array<std::uint8_t, 12> nonce{};
   nonce[4] = (n >> (8 * 0)) & 0xff;
   nonce[5] = (n >> (8 * 1)) & 0xff;
   nonce[6] = (n >> (8 * 2)) & 0xff;
@@ -228,8 +226,7 @@ void encrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
 template <STLContainer T1, STLContainer T2>
 void decrypt(T1 &k, std::uint64_t n, std::optional<T2> ad, T2 &in_out) {
   const auto text_size = in_out.size() - 16;
-  std::array<std::uint8_t, 12> nonce;
-  nonce.fill(0);
+  std::array<std::uint8_t, 12> nonce{};
   nonce[4] = (n >> (8 * 0)) & 0xff;
   nonce[5] = (n >> (8 * 1)) & 0xff;
   nonce[6] = (n >> (8 * 2)) & 0xff;
@@ -258,8 +255,7 @@ void decrypt(std::array<std::uint8_t, 32> &k, std::uint64_t n,
              std::optional<std::vector<std::uint8_t>> ad,
              std::vector<std::uint8_t> &in_out) {
   const auto text_size = in_out.size() - 16;
-  std::array<std::uint8_t, 12> nonce;
-  nonce.fill(0);
+  std::array<std::uint8_t, 12> nonce{};
   nonce[4] = (n >> (8 * 0)) & 0xff;
   nonce[5] = (n >> (8 * 1)) & 0xff;
   nonce[6] = (n >> (8 * 2)) & 0xff;
@@ -388,7 +384,8 @@ void CipherState::initialize_key(const std::array<std::uint8_t, 32> &key) {
 }
 
 bool CipherState::has_key() const {
-  return !std::ranges::all_of(k, [](const auto &el) { return el == 0; });
+  static constexpr std::array<std::uint8_t, 32> l{};
+  return crypto_verify32(k.data(), l.data()) == 0;
 }
 
 void CipherState::set_nonce(const std::uint64_t &nonce) { n = nonce; }
@@ -401,7 +398,9 @@ void CipherState::encrypt_with_ad(T &ad, T &plaintext) {
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
-  encrypt(k, n++, ad, plaintext);
+  std::array<std::uint8_t, 32> temp_k;
+  std::copy(k.begin(), k.end(), temp_k.begin());
+  encrypt(temp_k, n++, ad, plaintext);
 }
 
 void CipherState::encrypt_with_ad(std::vector<std::uint8_t> &plaintext) {
@@ -417,7 +416,9 @@ void CipherState::decrypt_with_ad(T &ad, T &ciphertext) {
   if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
-  decrypt(k, n++, ad, ciphertext);
+  std::array<std::uint8_t, 32> temp_k;
+  std::copy(k.begin(), k.end(), temp_k.begin());
+  decrypt(temp_k, n++, ad, ciphertext);
 }
 
 void CipherState::decrypt_with_ad(std::vector<std::uint8_t> &ciphertext) {
@@ -429,7 +430,9 @@ void CipherState::rekey() {
   std::vector<std::uint8_t> payload;
   payload.resize(32);
   std::ranges::fill(payload, 0);
-  encrypt(k, std::numeric_limits<std::uint64_t>::max() - 1, std::nullopt,
+  std::array<std::uint8_t, 32> temp_k;
+  std::copy(k.begin(), k.end(), temp_k.begin());
+  encrypt(temp_k, std::numeric_limits<std::uint64_t>::max() - 1, std::nullopt,
           payload);
   std::ranges::copy_n(payload.begin(), 32, k.begin());
   crypto_wipe(payload.data(), payload.size());
@@ -452,8 +455,7 @@ void SymmetricState::initialize_symmetric(
         protocol_name);
   }
   ck = h;
-  std::array<std::uint8_t, 32> key;
-  key.fill(0);
+  std::array<std::uint8_t, 32> key{};
   cs.initialize_key(key);
   crypto_wipe(key.data(), key.size());
 }
@@ -475,12 +477,8 @@ template <STLContainer T> void SymmetricState::mix_hash(const T &data) {
 
 template <STLContainer T>
 void SymmetricState::mix_key_and_hash(T &input_key_material) {
-  std::array<std::uint8_t, 64> temp_ck, temp_h, temp_k;
-  std::array<std::uint8_t, 32> truncated_temp_k;
-  temp_ck.fill(0);
-  temp_h.fill(0);
-  temp_k.fill(0);
-  truncated_temp_k.fill(0);
+  std::array<std::uint8_t, 64> temp_ck{}, temp_h{}, temp_k{};
+  std::array<std::uint8_t, 32> truncated_temp_k{};
   hkdf(ck, input_key_material, temp_ck, temp_h, temp_k);
   std::ranges::move(temp_ck, ck.begin());
   mix_hash(temp_h);
@@ -894,10 +892,9 @@ void HandshakeState::write_message(std::vector<std::uint8_t> &payload,
       using enum PatternToken;
       switch (token) {
       case E: {
-        if (!(std::ranges::all_of(esk,
-                                  [](const auto byte) { return byte == 0; }) &&
-              std::ranges::all_of(epk,
-                                  [](const auto byte) { return byte == 0; }))) {
+        static constexpr std::array<std::uint8_t, 32> zeroes{};
+        if (crypto_verify32(esk.data(), zeroes.data()) == -1 &&
+            crypto_verify32(epk.data(), zeroes.data()) == -1) {
           throw std::logic_error(
               "Asked to generate a new key pair but one already exists!");
         }
@@ -991,8 +988,8 @@ void HandshakeState::read_message(std::vector<std::uint8_t> &message,
       using enum PatternToken;
       switch (token) {
       case E: {
-        if (std::ranges::all_of(repk,
-                                [](const auto byte) { return byte != 0; })) {
+        static constexpr std::array<std::uint8_t, 32> zeroes{};
+        if (crypto_verify32(repk.data(), zeroes.data()) == -1) {
           throw std::logic_error("Wanted to store RE but RE already stored!");
         }
         std::copy_n(std::make_move_iterator(message.begin()), 32, repk.begin());
