@@ -385,7 +385,7 @@ void CipherState::initialize_key(const std::array<std::uint8_t, 32> &key) {
 
 bool CipherState::has_key() const {
   static constexpr std::array<std::uint8_t, 32> l{};
-  return crypto_verify32(k.data(), l.data()) == 0;
+  return crypto_verify32(k.data(), l.data()) != 0;
 }
 
 void CipherState::set_nonce(const std::uint64_t &nonce) { n = nonce; }
