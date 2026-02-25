@@ -351,10 +351,10 @@ void run_test(const NoiseTestVector vector) {
     // This definitely shouldn't fail, and if it does something is wrong
     auto alice_cipherstates = alice.finalize();
     auto bob_cipherstates = bob.finalize();
+    auto [alice_send_cipher, alice_recv_cipher] = alice_cipherstates;
+    auto [bob_recv_cipher, bob_send_cipher] = bob_cipherstates;
     for (auto i = 0; i < messages.size(); ++i) {
       const auto [payload, ciphertext] = messages[i];
-      auto [alice_send_cipher, alice_recv_cipher] = alice_cipherstates;
-      auto [bob_recv_cipher, bob_send_cipher] = bob_cipherstates;
       if (is_oneway || i % 2 == 0) {
         sendbuf = payload;
         alice_send_cipher.encrypt_with_ad(sendbuf);

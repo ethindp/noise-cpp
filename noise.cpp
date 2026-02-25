@@ -315,6 +315,7 @@ hmac_hash(std::array<std::uint8_t, 64> &key,
   crypto_blake2b_update(&ctx, hmac.data(), 64);
   crypto_blake2b_final(&ctx, hmac.data());
   crypto_wipe(&ctx, sizeof(ctx));
+  crypto_wipe(temp_key.data(), temp_key.size());
   return hmac;
 }
 
@@ -343,6 +344,7 @@ hmac_hash(std::array<std::uint8_t, 64> &key,
   crypto_blake2b_update(&ctx, hmac.data(), 64);
   crypto_blake2b_final(&ctx, hmac.data());
   crypto_wipe(&ctx, sizeof(ctx));
+  crypto_wipe(temp_key.data(), temp_key.size());
   return hmac;
 }
 
@@ -355,6 +357,7 @@ void hkdf(T1 &chaining_key, T2 &input_key_material, T1 &out1, T1 &out2) {
   tmp1.push_back(0x02);
   out2 = hmac_hash(temp_key, tmp1);
   crypto_wipe(temp_key.data(), temp_key.size());
+  crypto_wipe(tmp1.data(), tmp1.size());
 }
 
 template <STLContainer T1, STLContainer T2>
@@ -371,6 +374,8 @@ void hkdf(T1 &chaining_key, T2 &input_key_material, T1 &out1, T1 &out2,
   tmp2.push_back(0x03);
   out3 = hmac_hash(temp_key, tmp2);
   crypto_wipe(temp_key.data(), temp_key.size());
+  crypto_wipe(tmp1.data(), tmp1.size());
+  crypto_wipe(tmp2.data(), tmp2.size());
 }
 
 CipherState::~CipherState() {
@@ -395,7 +400,7 @@ void CipherState::encrypt_with_ad(T &ad, T &plaintext) {
   if (!has_key()) {
     return;
   }
-  if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
+  if (n == std::numeric_limits<std::uint64_t>::max()) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
   std::array<std::uint8_t, 32> temp_k;
@@ -413,7 +418,7 @@ void CipherState::decrypt_with_ad(T &ad, T &ciphertext) {
   if (!has_key()) {
     return;
   }
-  if (n == std::numeric_limits<std::uint64_t>::max() - 1) {
+  if (n == std::numeric_limits<std::uint64_t>::max()) {
     throw std::out_of_range("Nonce limit has been exceeded!");
   }
   std::array<std::uint8_t, 32> temp_k;
@@ -432,7 +437,7 @@ void CipherState::rekey() {
   std::ranges::fill(payload, 0);
   std::array<std::uint8_t, 32> temp_k;
   std::copy(k.begin(), k.end(), temp_k.begin());
-  encrypt(temp_k, std::numeric_limits<std::uint64_t>::max() - 1, std::nullopt,
+  encrypt(temp_k, std::numeric_limits<std::uint64_t>::max(), std::nullopt,
           payload);
   std::ranges::copy_n(payload.begin(), 32, k.begin());
   crypto_wipe(payload.data(), payload.size());
@@ -585,7 +590,7 @@ void HandshakeState::initialize(const HandshakeStateConfiguration &config) {
   }
   if (!config.psks.empty()) {
     psk_mode = true;
-    std::ranges::copy(config.psks, psks.begin());
+    psks = config.psks;
   } else {
     psk_mode = false;
   }
@@ -831,7 +836,7 @@ void HandshakeState::initialize(const HandshakeStateConfiguration &config) {
         if (token == E)
           ss.mix_hash(epk);
       }
-      for (const auto &token : initiator_pre_message_pattern) {
+      for (const auto &token : responder_pre_message_pattern) {
         if (token == E && !config.re)
           throw std::logic_error("A remote ephemeral key pair was expected but "
                                  "was not specified!");
@@ -856,7 +861,7 @@ void HandshakeState::initialize(const HandshakeStateConfiguration &config) {
         if (token == E)
           ss.mix_hash(repk);
       }
-      for (const auto &token : initiator_pre_message_pattern) {
+      for (const auto &token : responder_pre_message_pattern) {
         if (token == E && !config.e)
           throw std::logic_error(
               "An ephemeral key pair was expected but was not specified!");
